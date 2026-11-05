@@ -1,0 +1,36 @@
+# Essentially, a copy of catppuccin with a few changes. Need to tweak it more.
+palette = 0=#16171d
+palette = 1=#f38ba8
+palette = 2=#a6e3a1
+palette = 3=#f9e2af
+palette = 4=#89b4fa
+palette = 5=#f5c2e7
+palette = 6=#94e2d5
+palette = 7=#bac2de
+
+palette = 8=#2b2d3f
+palette = 9=#f7aec2
+palette = 10=#c2ecbf
+palette = 11=#fcd682
+palette = 12=#aeccfc
+palette = 13=#f398da
+palette = 14=#b1eae1
+palette = 15=#a6adc8
+
+# indigo_950 = #f1eff7
+# indigo_900 = #d9d8f3
+# indigo_800 = #c1c1f1
+# indigo_700 = #a6a8e8
+# indigo_600 = #878ad8
+# indigo_500 = #6e74c6
+# indigo_400 = #515793
+# indigo_300 = #3d426a
+# indigo_200 = #2b2d3f
+# indigo_100 = #20212d
+
+background = #16171d
+foreground = #d9d8f3
+cursor-color = #878ad8
+cursor-text = #16171d
+selection-background = #d9d8f3
+selection-foreground = #20212d
