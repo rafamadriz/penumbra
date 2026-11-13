@@ -29,7 +29,7 @@ local function set_groups()
     -- https://vonheikemen.github.io/learn-nvim/feature/colorscheme.html#lua-color-scheme
     local groups = {
         -- base
-        Normal = { fg = c.fg, bg = config.transparent and 'NONE' or c.bg },
+        Normal = { fg = c.fg, bg = c.bg },
         LineNr = { fg = c.indigo_300, bold = true },
         CursorLine = { bg = utils.shade(c.fg, 0.08, c.bg) },
         ColorColumn = { link = 'CursorLine' },
