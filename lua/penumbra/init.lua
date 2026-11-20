@@ -38,10 +38,17 @@ local function set_groups()
         lCursor = { link = 'Cursor' },
         CursorIM = { link = 'Cursor' },
         Directory = { fg = c.indigo_800 },
+
+        Added = { fg = c.green_800},
+        Removed = { fg = c.red_800 },
+        Changed = { fg = c.yellow_800 },
+
         DiffAdd = { bg = c.green_200, fg = c.fg },
         DiffChange = { bg = c.indigo_200 },
         DiffDelete = { bg = c.red_200, fg = c.fg },
         DiffText = { bg = c.indigo_300 },
+        DiffTextAdd = { bg = c.green_300 },
+
         -- EndOfBuffer = { fg = c.syntaxKeyword },
         TermCursor = { link = 'Cursor' },
         TermCursorNC = { link = 'Cursor' },
