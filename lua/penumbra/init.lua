@@ -133,9 +133,9 @@ local function set_groups()
         --   Macro = { link = 'Define' },
         --   PreCondit = { fg = c.syntaxError },
         --
-        --   Type = { fg = c.syntaxKeyword },
         --   Struct = { link = 'Type' },
         --   Class = { link = 'Type' },
+        Type = { fg = c.red_900 },
         --
         --   -- StorageClass = {},
         --   -- Structure = {},
@@ -156,9 +156,6 @@ local function set_groups()
         --   Italic = { italic = true },
         --   Ignore = { fg = c.editorBackground },
         Error = { link = 'ErrorMsg' },
-        --   Todo = { fg = c.warningText, bold = true },
-        --
-        LspReferenceText = { bg = utils.shade(c.indigo_300, 0.6, c.bg) },
         --   -- LspReferenceRead = {},
         --   -- LspReferenceWrite = {},
         --   -- LspCodeLens = {},
@@ -172,7 +169,15 @@ local function set_groups()
         -- DiagnosticWarn = {},
         -- DiagnosticInfo = {},
         -- DiagnosticHint = {},
+        Todo = { fg = c.blue_800, bold = true },
         --
+        LspReferenceText = { bg = c.indigo_200 },
+
+        DiagnosticError = { fg = c.red_800,    bold = true },
+        DiagnosticWarn  = { fg = c.yellow_800, bold = true },
+        DiagnosticInfo  = { fg = c.green_800,  bold = true },
+        DiagnosticHint  = { fg = c.blue_800,   bold = true},
+
         -- DiagnosticVirtualTextError = {},
         -- DiagnosticVirtualTextWarn = {},
         -- DiagnosticVirtualTextInfo = {},
@@ -205,6 +210,7 @@ local function set_groups()
         --   --
         --   -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
         --
+        ["@attribute.diff"] = { fg = c.purple_800, bold = true },
         --   ['@text'] = { fg = c.mainText },
         --   ['@texc.literal'] = { link = 'Property' },
         --   -- ["@texc.reference"] = {},
@@ -315,6 +321,12 @@ local function set_groups()
         --   ['@lsp.type.decorator'] = { link = '@label' },
         --   ['@lsp.typemod.function.declaration'] = { link = '@function' },
         --   ['@lsp.typemod.function.readonly'] = { link = '@function' },
+
+        -- NOTE: Treesitter has highlights for different types of comments (BUG, FIX, TODO, etc).
+        -- However, when an lsp has semantic tokens, it links `lsp.type.comments` to `Comments`, which overrides
+        -- Treesitter's highlights for those different types of comments. So basically, let's not do anything
+        -- with this highlight.
+        ['@lsp.type.comment'] = {},
 
         SnacksPickerToggle = { fg = c.blue, bg = c.indigo_100 },
     }
