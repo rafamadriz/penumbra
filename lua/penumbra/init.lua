@@ -66,12 +66,12 @@ local function set_groups()
         CurSearch = { link = 'IncSearch' },
         Substitute = { link = 'IncSearch' },
 
-        --   CursorLineNr = { fg = c.commentText },
+        -- CursorLineNr = { fg = c.commentText },
         MatchParen = { fg = c.bg, bg = c.purple_800, bold = true },
         ModeMsg = { link = 'Normal' },
         MsgArea = { link = 'Normal' },
         -- MsgSeparator = {},
-        --   MoreMsg = { fg = c.syntaxFunction },
+        -- MoreMsg = { fg = c.syntaxFunction },
         NonText = { fg = utils.shade(c.indigo_900, 0.5, c.bg) },
         NormalFloat = { bg = c.indigo_100 },
         NormalNC = { link = 'Normal' },
@@ -79,20 +79,20 @@ local function set_groups()
         PmenuSel = { bg = c.indigo_300 },
         WildMenu = { link = 'PmenuSel' },
         PmenuThumb = { bg = c.indigo_700 },
-        --   Question = { fg = c.syntaxFunction },
+        -- Question = { fg = c.syntaxFunction },
         QuickFixLine = { bg = utils.shade(c.indigo_300, 0.5, c.bg) },
         SpecialKey = { fg = c.indigo_700 },
         StatusLine = { fg = c.fg, bg = c.indigo_100 },
         StatusLineNC = { fg = c.indigo_800, bg = c.indigo_100 },
-        --   TabLine = {
-        --     bg = c.sidebarBackground,
-        --     fg = c.inactiveText,
-        --   },
-        --   TabLineFill = { link = 'TabLine' },
-        --   TabLineSel = {
-        --     bg = c.editorBackground,
-        --     fg = c.emphasisText,
-        --   },
+        -- TabLine = {
+        --   bg = c.sidebarBackground,
+        --   fg = c.inactiveText,
+        -- },
+        -- TabLineFill = { link = 'TabLine' },
+        -- TabLineSel = {
+        --   bg = c.editorBackground,
+        --   fg = c.emphasisText,
+        -- },
         SpellBad = { undercurl = true, sp = c.red },
         SpellCap = { undercurl = true, sp = c.yellow },
         SpellLocal = { undercurl = true, sp = c.green },
@@ -103,11 +103,6 @@ local function set_groups()
         VisualNOS = { link = 'Visual' },
         -- Whitespace = { fg = c.syntaxOperator },
         Comment = { fg = c.yellow_900, italic = config.italics.comments or true },
-        --   Whitespace = { fg = c.syntaxOperator },
-        Comment = {
-            fg = c.yellow,
-            italic = config.italics.comments or true,
-        },
         --
         Constant  = { fg   = c.blue_900, bold = true },
         Character = { link = 'Constant', bold = false },
@@ -131,49 +126,41 @@ local function set_groups()
         PreProc     = { link = 'Statement' },
         -- Operator = { fg = c.teal_800 },
         -- Include = {},
-        --   Define = { fg = c.syntaxKeyword },
-        --   Macro = { link = 'Define' },
-        --   PreCondit = { fg = c.syntaxError },
+        -- Define = { fg = c.syntaxKeyword },
+        -- Macro = { link = 'Define' },
+        -- PreCondit = { fg = c.syntaxError },
         --
-        --   Struct = { link = 'Type' },
-        --   Class = { link = 'Type' },
         Type = { fg = c.red_900 },
+        -- Struct = { link = 'Type' },
+        -- Class = { link = 'Type' },
         --
-        --   -- StorageClass = {},
-        --   -- Structure = {},
-        --   -- Typedef = {},
+        -- StorageClass = {},
+        -- Structure = {},
+        -- Typedef = {},
         --
-        --   Attribute = { link = 'Character' },
+        -- Attribute = { link = 'Character' },
         Punctuation = { fg = c.blue },
         Special = { fg = c.indigo_700 },
         --
-        --   SpecialChar = { fg = c.syntaxError },
-        --   Tag = { fg = c.stringText },
+        -- SpecialChar = { fg = c.syntaxError },
+        -- Tag = { fg = c.stringText },
         Delimiter = { fg = c.fg },
-        --   -- SpecialComment = {},
-        --   Debug = { fg = c.specialKeyword },
+        -- SpecialComment = {},
+        -- Debug = { fg = c.specialKeyword },
         --
-        --   Underlined = { underline = true },
-        --   Bold = { bold = true },
-        --   Italic = { italic = true },
-        --   Ignore = { fg = c.editorBackground },
+        -- Underlined = { underline = true },
+        -- Bold = { bold = true },
+        -- Italic = { italic = true },
+        -- Ignore = { fg = c.editorBackground },
         Error = { link = 'ErrorMsg' },
-        --   -- LspReferenceRead = {},
-        --   -- LspReferenceWrite = {},
-        --   -- LspCodeLens = {},
-        --   -- LspCodeLensSeparator = {},
-        --   -- LspSignatureActiveParameter = {},
-        --
-        ---------------------------------------------------------------
-        ----- Default diagnostics colors work perfect
-        ---------------------------------------------------------------
-        -- DiagnosticError = {},
-        -- DiagnosticWarn = {},
-        -- DiagnosticInfo = {},
-        -- DiagnosticHint = {},
         Todo = { fg = c.blue_800, bold = true },
         --
         LspReferenceText = { bg = c.indigo_200 },
+        -- LspReferenceRead = {},
+        -- LspReferenceWrite = {},
+        -- LspCodeLens = {},
+        -- LspCodeLensSeparator = {},
+        -- LspSignatureActiveParameter = {},
 
         DiagnosticError = { fg = c.red_800,    bold = true },
         DiagnosticWarn  = { fg = c.yellow_800, bold = true },
@@ -200,135 +187,136 @@ local function set_groups()
         -- DiagnosticSignInfo = {},
         -- DiagnosticSignHint = {},
 
-        --   -- Tree-Sitter groups are defined with an "@" symbol, which must be
-        --   -- specially handled to be valid lua code, we do this via the special
-        --   -- sym function. The following are all valid ways to call the sym function,
-        --   -- for more details see https://www.lua.org/pil/5.html
-        --   --
-        --   -- sym("@text.literal")
-        --   -- sym('@text.literal')
-        --   -- sym"@text.literal"
-        --   -- sym'@text.literal'
-        --   --
-        --   -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
+        -- Tree-Sitter groups are defined with an "@" symbol, which must be
+        -- specially handled to be valid lua code, we do this via the special
+        -- sym function. The following are all valid ways to call the sym function,
+        -- for more details see https://www.lua.org/pil/5.html
         --
+        -- sym("@text.literal")
+        -- sym('@text.literal')
+        -- sym"@text.literal"
+        -- sym'@text.literal'
         ["@attribute.diff"] = { fg = c.purple_800, bold = true },
-        --   ['@text'] = { fg = c.mainText },
-        --   ['@texc.literal'] = { link = 'Property' },
-        --   -- ["@texc.reference"] = {},
-        --   ['@texc.strong'] = { link = 'Bold' },
-        --   ['@texc.italic'] = { link = 'Italic' },
-        --   ['@texc.title'] = { link = 'Keyword' },
-        --   ['@texc.uri'] = {
+        --
+        -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
+        --
+        -- ['@text'] = { fg = c.mainText },
+        -- ['@texc.literal'] = { link = 'Property' },
+        -- ["@texc.reference"] = {},
+        -- ['@texc.strong'] = { link = 'Bold' },
+        -- ['@texc.italic'] = { link = 'Italic' },
+        -- ['@texc.title'] = { link = 'Keyword' },
+        -- ['@texc.uri'] = {
         --     fg = c.syntaxFunction,
         --     sp = c.syntaxFunction,
         --     underline = true,
-        --   },
-        --   ['@texc.underline'] = { link = 'Underlined' },
-        --   ['@symbol'] = { fg = c.syntaxOperator },
-        --   ['@texc.todo'] = { link = 'Todo' },
-        --   ['@comment'] = { link = 'Comment' },
-        --   ['@punctuation'] = { link = 'Punctuation' },
-        --   ['@punctuation.bracket'] = { fg = c.warningEmphasis },
-        --   ['@punctuation.delimiter'] = { fg = c.syntaxError },
-        --   ['@punctuation.terminator.statement'] = { link = 'Delimiter' },
-        --   ['@punctuation.special'] = { fg = c.syntaxError },
-        --   ['@punctuation.separator.keyvalue'] = { fg = c.syntaxError },
+        -- },
+        -- ['@texc.underline'] = { link = 'Underlined' },
+        -- ['@symbol'] = { fg = c.syntaxOperator },
+        -- ['@texc.todo'] = { link = 'Todo' },
+        -- ['@comment.todo.comment'] = { fg = c.blue_900 },
+        -- ['@punctuation'] = { link = 'Punctuation' },
+        -- ['@punctuation.bracket'] = { fg = c.warningEmphasis },
+        -- ['@punctuation.delimiter'] = { fg = c.syntaxError },
+        -- ['@punctuation.terminator.statement'] = { link = 'Delimiter' },
+        -- ['@punctuation.special'] = { fg = c.syntaxError },
+        -- ['@punctuation.separator.keyvalue'] = { fg = c.syntaxError },
         --
-        --   ['@texc.diff.add'] = { fg = c.successText },
-        --   ['@texc.diff.delete'] = { fg = c.errorText },
+        -- ['@texc.diff.add'] = { fg = c.successText },
+        -- ['@texc.diff.delete'] = { fg = c.errorText },
         --
-        --   ['@constant'] = { link = 'Constant' },
-        --   ['@constant.builtin'] = { fg = c.syntaxFunction },
-        --   ['@constanc.builtin'] = { link = 'Keyword' },
-        --   -- ["@constanc.macro"] = {},
-        --   -- ["@define"] = {},
-        --   -- ["@macro"] = {},
-        --   ['@string'] = { link = 'String' },
-        --   ['@string.escape'] = { fg = utils.shade(c.stringText, 0.45) },
-        --   ['@string.special'] = { fg = utils.shade(c.syntaxFunction, 0.45) },
-        --   -- ["@character"] = {},
-        --   -- ["@character.special"] = {},
-        --   ['@number'] = { link = 'Number' },
-        --   ['@boolean'] = { link = 'Boolean' },
-        --   -- ["@float"] = {},
-        --   ['@function'] = {
+        -- ['@constant'] = { link = 'Constant' },
+        -- ['@constant.builtin'] = { fg = c.syntaxFunction },
+        -- ['@constanc.builtin'] = { link = 'Keyword' },
+        -- ["@constanc.macro"] = {},
+        -- ["@define"] = {},
+        -- ["@macro"] = {},
+        -- ['@string'] = { link = 'String' },
+        -- ['@string.escape'] = { fg = utils.shade(c.stringText, 0.45) },
+        -- ['@string.special'] = { fg = utils.shade(c.syntaxFunction, 0.45) },
+        -- ["@character"] = {},
+        -- ["@character.special"] = {},
+        -- ['@number'] = { link = 'Number' },
+        -- ['@boolean'] = { link = 'Boolean' },
+        -- ["@float"] = {},
+        -- ['@function'] = {
         --     link = 'Function',
         --     italic = config.italics.functions or false,
-        --   },
-        --   ['@function.call'] = { link = 'Function' },
-        --   ['@function.builtin'] = { link = 'Function' },
-        --   -- ["@function.macro"] = {},
-        --   ['@parameter'] = { link = 'Parameter' },
-        --   ['@method'] = { link = 'Function' },
-        --   ['@field'] = { link = 'Property' },
-        --   ['@property'] = { link = 'Property' },
-        --   ['@constructor'] = { fg = c.syntaxFunction },
-        --   -- ["@conditional"] = {},
-        --   -- ["@repeat"] = {},
-        --   ['@label'] = { link = 'Label' },
-        --   ['@operator'] = { link = 'Operator' },
-        --   ['@exception'] = { link = 'Exception' },
+        -- },
+        -- ['@function.call'] = { link = 'Function' },
+        -- ['@function.builtin'] = { link = 'Function' },
+        -- ["@function.macro"] = {},
+        -- ['@parameter'] = { link = 'Parameter' },
+        -- ['@method'] = { link = 'Function' },
+        -- ['@field'] = { link = 'Property' },
+        -- ['@property'] = { link = 'Property' },
+        -- ['@constructor'] = { fg = c.syntaxFunction },
+        -- ["@conditional"] = {},
+        -- ["@repeat"] = {},
+        -- ['@label'] = { link = 'Label' },
+        -- ['@operator'] = { link = 'Operator' },
+        -- ['@exception'] = { link = 'Exception' },
         -- ['@variable'] = {
         --     fg = c.mainText,
-        --     -- italic = config.italics.variables or false,
+        --     italic = config.italics.variables or false,
         -- },
-        --   ['@variable.builtin'] = { fg = c.syntaxFunction },
-        --   ['@variable.parameter'] = {
+        -- ['@variable.builtin'] = { fg = c.syntaxFunction },
         ['@variable.member'] = { link = "Identifier" },
+        -- ['@variable.parameter'] = {
         --     fg = c.mainText,
         --     italic = config.italics.variables or false,
-        --   },
-        --   ['@type'] = { link = 'Type' },
-        --   ['@type.definition'] = { fg = c.mainText },
-        --   ['@type.builtin'] = { fg = c.syntaxFunction },
-        --   ['@type.qualifier'] = { fg = c.syntaxFunction },
-        --   ['@keyword'] = { link = 'Keyword' },
-        --   -- ["@storageclass"] = {},
-        --   -- ["@structure"] = {},
-        --   ['@namespace'] = { link = 'Type' },
-        --   ['@annotation'] = { link = 'Label' },
-        --   -- ["@include"] = {},
-        --   -- ["@preproc"] = {},
-        --   ['@debug'] = { fg = c.specialKeyword },
-        --   ['@tag'] = { link = 'Tag' },
-        --   ['@tag.builtin'] = { link = 'Tag' },
-        --   ['@tag.delimiter'] = { fg = c.syntaxOperator },
-        --   ['@tag.attribute'] = { fg = c.syntaxKeyword },
-        --   ['@tag.jsx.element'] = { fg = c.syntaxFunction },
-        --   ['@attribute'] = { fg = c.syntaxKeyword },
-        --   ['@error'] = { link = 'Error' },
-        --   ['@warning'] = { link = 'WarningMsg' },
-        --   ['@info'] = { fg = c.syntaxFunction },
+        -- },
+        -- ['@type'] = { link = 'Type' },
+        -- ['@type.definition'] = { fg = c.mainText },
+        -- ['@type.builtin'] = { fg = c.syntaxFunction },
+        -- ['@type.qualifier'] = { fg = c.syntaxFunction },
+        -- ['@keyword'] = { link = 'Keyword' },
+        -- ["@storageclass"] = {},
+        -- ["@structure"] = {},
+        -- ['@namespace'] = { link = 'Type' },
+        -- ['@annotation'] = { link = 'Label' },
+        -- ["@include"] = {},
+        -- ["@preproc"] = {},
+        -- ['@debug'] = { fg = c.specialKeyword },
+        -- ['@tag'] = { link = 'Tag' },
+        -- ['@tag.builtin'] = { link = 'Tag' },
+        -- ['@tag.delimiter'] = { fg = c.syntaxOperator },
+        -- ['@tag.attribute'] = { fg = c.syntaxKeyword },
+        -- ['@tag.jsx.element'] = { fg = c.syntaxFunction },
+        -- ['@attribute'] = { fg = c.syntaxKeyword },
+        -- ['@error'] = { link = 'Error' },
+        -- ['@warning'] = { link = 'WarningMsg' },
+        -- ['@info'] = { fg = c.syntaxFunction },
         --
-        --   -- Specific languages
-        --   -- overrides
-        --   ['@label.json'] = { fg = c.property }, -- For json
-        --   ['@label.help'] = { link = '@texc.uri' }, -- For help files
-        --   ['@texc.uri.html'] = { underline = true }, -- For html
+        -- Specific languages
+        -- overrides
+        -- ['@label.json'] = { fg = c.property }, -- For json
+        -- ['@label.help'] = { link = '@texc.uri' }, -- For help files
+        -- ['@texc.uri.html'] = { underline = true }, -- For html
         --
-        --   -- semantic highlighting
-        --   ['@lsp.type.namespace'] = { link = '@namespace' },
-        --   ['@lsp.type.type'] = { link = '@type' },
-        --   ['@lsp.type.class'] = { link = '@type' },
-        --   ['@lsp.type.enum'] = { link = '@type' },
-        --   ['@lsp.type.enumMember'] = { fg = c.syntaxFunction },
-        --   ['@lsp.type.interface'] = { link = '@type' },
-        --   ['@lsp.type.struct'] = { link = '@type' },
-        --   ['@lsp.type.parameter'] = { link = '@parameter' },
-        --   ['@lsp.type.property'] = { link = '@text' },
-        --   ['@lsp.type.function'] = { link = '@function' },
-        --   ['@lsp.type.method'] = { link = '@method' },
-        --   ['@lsp.type.macro'] = { link = '@label' },
-        --   ['@lsp.type.decorator'] = { link = '@label' },
-        --   ['@lsp.typemod.function.declaration'] = { link = '@function' },
-        --   ['@lsp.typemod.function.readonly'] = { link = '@function' },
+        -- semantic highlighting
 
         -- NOTE: Treesitter has highlights for different types of comments (BUG, FIX, TODO, etc).
         -- However, when an lsp has semantic tokens, it links `lsp.type.comments` to `Comments`, which overrides
         -- Treesitter's highlights for those different types of comments. So basically, let's not do anything
         -- with this highlight.
         ['@lsp.type.comment'] = {},
+
+        -- ['@lsp.type.namespace'] = { link = '@namespace' },
+        -- ['@lsp.type.type'] = { link = '@type' },
+        -- ['@lsp.type.class'] = { link = '@type' },
+        -- ['@lsp.type.enum'] = { link = '@type' },
+        -- ['@lsp.type.enumMember'] = { fg = c.syntaxFunction },
+        -- ['@lsp.type.interface'] = { link = '@type' },
+        -- ['@lsp.type.struct'] = { link = '@type' },
+        -- ['@lsp.type.parameter'] = { link = '@parameter' },
+        -- ['@lsp.type.property'] = { link = '@text' },
+        -- ['@lsp.type.function'] = { link = '@function' },
+        -- ['@lsp.type.method'] = { link = '@method' },
+        -- ['@lsp.type.macro'] = { link = '@label' },
+        -- ['@lsp.type.decorator'] = { link = '@label' },
+        -- ['@lsp.typemod.function.declaration'] = { link = '@function' },
+        -- ['@lsp.typemod.function.readonly'] = { link = '@function' },
 
         SnacksPickerToggle = { bg = c.indigo_100 },
     }
