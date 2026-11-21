@@ -3,9 +3,9 @@ local M
 if vim.o.background == 'dark' then
     M = {
         -- https://www.inclusivecolors.com/?style_dictionary=eyJjb2xvciI6eyJiYXNlIjp7ImluZGlnbyI6eyI1MCI6eyJ2YWx1ZSI6IiMxNjE3MWQiLCJsb2NrZWQiOnRydWV9LCIxMDAiOnsidmFsdWUiOiIjMjAyMTJkIiwibG9ja2VkIjp0cnVlfSwiMjAwIjp7InZhbHVlIjoiIzJiMmQzZiIsImxvY2tlZCI6dHJ1ZX0sIjMwMCI6eyJ2YWx1ZSI6IiMzZDQyNmEiLCJsb2NrZWQiOnRydWV9LCI0MDAiOnsidmFsdWUiOiIjNTE1NzkzIiwibG9ja2VkIjp0cnVlfSwiNTAwIjp7InZhbHVlIjoiIzZlNzRjNiIsImxvY2tlZCI6dHJ1ZX0sIjYwMCI6eyJ2YWx1ZSI6IiM4NzhhZDgiLCJsb2NrZWQiOnRydWV9LCI3MDAiOnsidmFsdWUiOiIjYTZhOGU4IiwibG9ja2VkIjp0cnVlfSwiODAwIjp7InZhbHVlIjoiI2MxYzFmMSIsImxvY2tlZCI6dHJ1ZX0sIjkwMCI6eyJ2YWx1ZSI6IiNkOWQ4ZjMiLCJsb2NrZWQiOnRydWV9LCI5NTAiOnsidmFsdWUiOiIjZjFlZmY3IiwibG9ja2VkIjp0cnVlfX19fX0%253D
-        indigo_950 = '#f1eff7',
-        indigo_900 = '#d9d8f3',
-        indigo_800 = '#c1c1f1',
+        indigo_950 = '#e9e5f2',
+        indigo_900 = '#d0cff0',
+        indigo_800 = '#babaef',
         indigo_700 = '#a6a8e8',
         indigo_600 = '#878ad8',
         indigo_500 = '#6e74c6',
@@ -29,8 +29,8 @@ if vim.o.background == 'dark' then
 
         red_950 = '#ffecec',
         red_900 = '#f4d3d2',
-        red_800 = '#f2b6b5',
-        red_700 = '#ec9795',
+        red_800 = '#ef9d9b',
+        red_700 = '#ea8885',
         red_600 = '#e16e6c',
         red_500 = '#cf524f',
         red_400 = '#8d4847',
@@ -52,8 +52,8 @@ if vim.o.background == 'dark' then
         orange_50 = '#1a1715',
 
         yellow_950 = '#f6f1d6',
-        yellow_900 = '#ebdc7f',
-        yellow_800 = '#d5c762',
+        yellow_900 = '#faf1bf',
+        yellow_800 = '#ecde79',
         yellow_700 = '#bbaf5d',
         yellow_600 = '#9c9255',
         yellow_500 = '#847c4e',
@@ -64,8 +64,8 @@ if vim.o.background == 'dark' then
         yellow_50 = '#181715',
 
         green_950 = '#def7d7',
-        green_900 = '#9bef7e',
-        green_800 = '#83da62',
+        green_900 = '#cbf9bf',
+        green_800 = '#b9f0a9',
         green_700 = '#76bf5c',
         green_600 = '#679f55',
         green_500 = '#5b864e',
@@ -96,7 +96,7 @@ if vim.o.background == 'dark' then
         green = '#bbf7d0',
         green_bg = '#1f231e',
     }
-else
+elseif vim.o.background == 'light' then
     M = {
         -- indigo_50 = '#f1eff7',
         indigo_50 = '#d9d8f3',

@@ -53,10 +53,10 @@ local function set_groups()
         TermCursor = { link = 'Cursor' },
         TermCursorNC = { link = 'Cursor' },
 
-        ErrorMsg = { fg = c.red },
-        WarningMsg = { fg = c.yellow },
+        ErrorMsg = { fg = c.red_800 },
+        WarningMsg = { fg = c.yellow_800 },
 
-        WinSeparator = { link = 'Normal' },
+        WinSeparator = { link = 'Special' },
         SignColumn = { link = 'Normal' },
         Folded = { fg = c.fg, bg = c.indigo_100 },
         FoldColumn = { link = 'SignColumn' },
@@ -67,7 +67,7 @@ local function set_groups()
         Substitute = { link = 'IncSearch' },
 
         --   CursorLineNr = { fg = c.commentText },
-        MatchParen = { fg = c.bg, bg = c.indigo_700, bold = true },
+        MatchParen = { fg = c.bg, bg = c.purple_800, bold = true },
         ModeMsg = { link = 'Normal' },
         MsgArea = { link = 'Normal' },
         -- MsgSeparator = {},
@@ -101,18 +101,20 @@ local function set_groups()
         FloatTitle = { fg = c.indigo_700, bg = c.indigo_100 },
         Visual = { bg = utils.shade(c.indigo_900, 0.2, c.bg) },
         VisualNOS = { link = 'Visual' },
+        -- Whitespace = { fg = c.syntaxOperator },
+        Comment = { fg = c.yellow_900, italic = config.italics.comments or true },
         --   Whitespace = { fg = c.syntaxOperator },
         Comment = {
             fg = c.yellow,
             italic = config.italics.comments or true,
         },
         --
-        Constant  = { fg   = c.blue, bold = true },
+        Constant  = { fg   = c.blue_900, bold = true },
         Character = { link = 'Constant', bold = false },
-        Boolean   = { fg   = c.blue, bold = true },
-        Number = { fg   = c.red, bold = true },
+        Boolean   = { fg   = c.blue_900, bold = true },
+        Number = { fg   = c.orange_800, bold = true },
         Float  = { link = 'Number' },
-        String = { fg   = c.green },
+        String = { fg   = c.green_900 },
         --
         Identifier = { fg = c.indigo_900 },
         Function = { fg = c.indigo_800 },
@@ -120,7 +122,7 @@ local function set_groups()
         -- Property = { fg = c.indio },
         -- Field = { link = 'Property' },
         Parameter = { fg = c.fg },
-        Statement = { fg = c.red, bold = true },
+        Statement = { fg = c.purple_900, bold = true },
         Conditional = { link = 'Statement' },
         Label       = { link = 'Statement' },
         Repeat      = { link = 'Statement' },
@@ -272,8 +274,8 @@ local function set_groups()
         --     -- italic = config.italics.variables or false,
         -- },
         --   ['@variable.builtin'] = { fg = c.syntaxFunction },
-        ['@variable.member'] = { fg = c.indigo_900 },
         --   ['@variable.parameter'] = {
+        ['@variable.member'] = { link = "Identifier" },
         --     fg = c.mainText,
         --     italic = config.italics.variables or false,
         --   },
@@ -328,7 +330,7 @@ local function set_groups()
         -- with this highlight.
         ['@lsp.type.comment'] = {},
 
-        SnacksPickerToggle = { fg = c.blue, bg = c.indigo_100 },
+        SnacksPickerToggle = { bg = c.indigo_100 },
     }
 
     -- overrides
