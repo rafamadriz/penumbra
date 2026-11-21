@@ -1,7 +1,10 @@
 local theme = {}
 local utils = require'penumbra.utils'
 local config = require'penumbra.config'
-local c = require'penumbra.colorscheme'
+-- The palette depends on vim.o.background, which can change at runtime (and
+-- Neovim re-sources the colorscheme when it does), so it is loaded lazily in
+-- colorscheme() instead of being captured here at module load time.
+local c
 
 local function set_terminal_colors()
     -- vim.g.terminal_color_0 = c.editorBackground
@@ -359,6 +362,10 @@ function theme.colorscheme()
     vim.g.VM_theme_set_by_colorscheme = true
     vim.o.termguicolors = true
     vim.g.colors_name = 'penumbra'
+
+    -- Drop the cached palette so it is rebuilt for the current 'background'.
+    package.loaded['penumbra.colorscheme'] = nil
+    c = require'penumbra.colorscheme'
 
     set_terminal_colors()
     set_groups()
