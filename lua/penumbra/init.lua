@@ -390,7 +390,7 @@ local function set_groups()
         DiagnosticWarn = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         DiagnosticInfo = { fg = c.purple_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         DiagnosticHint = { fg = c.blue_800,   bold = true}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticOk   = { fg = c.green_800 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticOk    = { fg = c.green_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 
         DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text.
         DiagnosticVirtualTextWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual text.
