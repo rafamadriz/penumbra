@@ -35,7 +35,7 @@ local function set_groups()
         -----------------------------------------------------
         -----------------------------------------------------
         ColorColumn  = { link = "CursorLine" },                  -- Used for the columns set with 'colorcolumn'.
-        -- Conceal   = {},                                       -- Placeholder characters substituted for concealed
+        Conceal      = { fg   = c.indigo_200 },                  -- Placeholder characters substituted for concealed
         Cursor       = { fg   = c.bg, bg = c.fg },               -- Character under the cursor.
         lCursor      = { link = "Cursor" },                      -- Character under the cursor when |language-mapping|
         CursorIM     = { link = "Cursor" },                      -- Like Cursor, but used when in IME mode. *CursorIM*
@@ -44,24 +44,24 @@ local function set_groups()
         CursorLine   = { bg   = utils.shade(c.fg, 0.08, c.bg) }, -- Screen-line at the cursor, when 'cursorline' is set.
         Directory    = { fg   = c.indigo_800 },                  -- Directory names (and other special names in listings).
 
-        NonText = { fg = utils.shade(c.indigo_900, 0.5, c.bg) }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        -- EndOfBuffer = {}, -- Filler lines (~) after the last line in the buffer. By default, this is highlighted like |hl-NonText|.
-        -- Whitespace = {}, -- "nbsp", "space", "tab", "multispace", "lead" and "trail" in 'listchars'.
+        NonText = { fg = c.indigo_400, }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        EndOfBuffer = { link = "NonText" }, -- Filler lines (~) after the last line in the buffer. By default, this is highlighted like |hl-NonText|.
+        Whitespace = { link = "NonText" }, -- "nbsp", "space", "tab", "multispace", "lead" and "trail" in 'listchars'.
 
-        -- OkMsg     = {},              -- Success messages.
         WarningMsg   = { fg   = c.yellow_800 }, -- Warning messages.
         ErrorMsg     = { fg   = c.red_800 },    -- Error messages.
-        -- StderrMsg    = {},                      -- Messages in stderr from shell commands.
-        -- StdoutMsg    = {},                      -- Messages in stdout from shell commands.
         ModeMsg      = { link = "Normal" },     -- 'showmode' message (e.g., "  -- INSERT --").
+        OkMsg      = { fg = c.green_800, bold = true },  -- Success messages.
+        StderrMsg    = { link = "ErrorMsg" },   -- Messages in stderr from shell commands.
+        StdoutMsg    = { link = "Normal" },     -- Messages in stdout from shell commands.
         MsgArea      = { link = "Normal" },     -- Area for messages and command-line, see also 'cmdheight'.
-        -- MsgSeparator = {},                      -- Separator for scrolled messages |msgsep|.
-        -- MoreMsg      = {},                      -- |more                        -prompt|
-        -- Question     = {},                      -- |hit                         -enter| prompt and yes/no questions.
         Title        = { fg   = c.indigo_700 }, -- Titles for output from ":set all", ":autocmd" etc.
+        MsgSeparator = { link = "StatusLine" }, -- Separator for scrolled messages |msgsep|.
+        MoreMsg      = { fg = c.blue_800 },     -- |more-prompt|
+        Question     = { fg = c.blue_800 },     -- |hit-enter| prompt and yes/no questions.
 
-        -- WinBar    = {}, -- Window bar of current window.
-        -- WinBarNC  = {}, -- Window bar of not-current windows.
+        WinBar    = { bg = c.indigo_200, fg = c.indigo_900 }, -- Window bar of current window.
+        WinBarNC  = { bg = c.indigo_100, fg = c.indigo_400 }, -- Window bar of not-current windows.
         WinSeparator = { link = "Special" },               -- Separators between window splits.
         Folded       = { fg   = c.fg, bg = c.indigo_100 }, -- Line used for closed folds.
         FoldColumn   = { link = "SignColumn" },            -- 'foldcolumn'
@@ -73,67 +73,65 @@ local function set_groups()
         MatchParen = { fg   = c.bg, bg = c.purple_800, bold = true }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         Substitute = { link = "IncSearch" },                          -- |:substitute| replacement text highlighting.
 
-        LineNr            = { fg = c.indigo_300, bold = true }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-        -- LineNrAbove    = {}, -- Line number for when the 'relativenumber' option is set, above the cursor line.
-        -- LineNrBelow    = {}, -- Line number for when the 'relativenumber' option is set, below the cursor line.
-        -- CursorLineNr   = { fg = c.commentText }, Like LineNr when 'cursorline' is set and 'cursorlineopt' contains "number" or is "both", for the cursor line.
-        -- CursorLineFold = {}, -- Like FoldColumn when 'cursorline' is set for the cursor line.
-        -- CursorLineSign = {}, -- Like SignColumn when 'cursorline' is set for the cursor line.
+        LineNr       = { fg = c.indigo_300, bold = true }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNrAbove  = { link = "LineNr"}, -- Line number for when the 'relativenumber' option is set, above the cursor line.
+        LineNrBelow  = { link = "LineNr" }, -- Line number for when the 'relativenumber' option is set, below the cursor line.
+        CursorLineNr = { link = "CursorLine", bold = true }, -- Like LineNr when 'cursorline' is set and 'cursorlineopt' contains "number" or is "both", for the cursor line.
+        CursorLineFold = { link = "FoldColumn" }, -- Like FoldColumn when 'cursorline' is set for the cursor line.
+        CursorLineSign = { link = "SignColumn" }, -- Like SignColumn when 'cursorline' is set for the cursor line.
 
-        Normal                = { fg = c.fg, bg = c.bg },                      -- Normal text.
-        NormalFloat           = { bg = c.indigo_100 },                         -- Normal text in floating windows.
-        -- FloatBorder        = {}, -- Border of floating windows.
-        -- FloatShadow        = {}, -- Blended areas when border is "shadow".
-        -- FloatShadowThrough = {}, -- Shadow corners when border is "shadow".
-        FloatTitle            = { fg   = c.indigo_700, bg = c.indigo_100 },      -- Title of floating windows.
-        -- FloatFooter        = {}, -- Footer of floating windows.
-        NormalNC              = { link = "Normal" },                             -- Normal text in non       -current windows.
-        Visual                = { bg   = utils.shade(c.indigo_900, 0.2, c.bg) }, -- Visual mode selection.
-        VisualNOS             = { link = "Visual" },                             -- Visual mode selection when vim is "Not Owning the Selection".
+        Normal             = { fg = c.fg, bg = c.bg }, -- Normal text.
+        NormalFloat        = { bg = c.secondary_bg },  -- Normal text in floating windows.
+        FloatBorder        = { link = "NormalFloat" }, -- Border of floating windows.
+        FloatShadow        = { bg   = c.indigo_300 },  -- Blended areas when border is "shadow".
+        FloatShadowThrough = { link = "FloatShadow" }, -- Shadow corners when border is "shadow".
+        FloatTitle         = { link = "Title" },       -- Title of floating windows.
+        FloatFooter        = { link = "FloatTitle" },  -- Footer of floating windows.
+        NormalNC           = { link = "Normal" },      -- Normal text in non-current windows.
+        Visual             = { bg   = utils.shade(c.indigo_900, 0.15, c.bg) }, -- Visual mode selection.
+        VisualNOS          = { link = "Visual" },                             -- Visual mode selection when vim is "Not Owning the Selection".
 
-        Pmenu                 = { link = "NormalFloat" }, -- Popup menu: Normal item.
-        PmenuSel              = { bg   = c.indigo_300 },  -- Popup menu: Selected item. Combined with |hl-Pmenu|.
-        -- PmenuKind          = {},                    -- Popup menu: Normal item "kind".
-        -- PmenuKindSel       = {},                    -- Popup menu: Selected item "kind".
-        -- PmenuExtra         = {},                    -- Popup menu: Normal item "extra text".
-        -- PmenuExtraSel      = {},                    -- Popup menu: Selected item "extra text".
-        -- PmenuSbar          = {},                    -- Popup menu: Scrollbar.
-        PmenuThumb            = { bg   = c.indigo_700 },  -- Popup menu: Thumb of the scrollbar.
-        -- PmenuMatch         = {},                    -- Popup menu: Matched text in normal item.  Combined with |hl  -Pmenu|.
-        -- PmenuMatchSel      = {},                    -- Popup menu: Matched text in selected item.  Combined with |hl-PmenuMatch| and |hl-PmenuSel|.
-        -- PmenuBorder        = {},                    -- Popup menu: border of popup menu.
-        -- PmenuShadow        = {},                    -- Popup menu: blended areas when 'pumborder' is "shadow".
-        -- PmenuShadowThrough = {},                    -- Popup menu: shadow corners when 'pumborder' is "shadow".
-        -- ComplMatchIns      = {},                    -- Matched text of the currently inserted completion.
-        -- PreInsert          = {},                    -- Text inserted when "preinsert" is in 'completeopt'.
-        -- ComplHint          = {},                    -- Virtual text of the currently selected completion.
-        -- ComplHintMore      = {},                    -- The additional information of the virtual text.
-        WildMenu              = { link = "PmenuSel" },    -- Current match in 'wildmenu' completion.
+        Pmenu         = { link = "NormalFloat" }, -- Popup menu: Normal item.
+        PmenuSel      = { bg   = c.indigo_300 },  -- Popup menu: Selected item. Combined with |hl-Pmenu|.
+        PmenuKind     = { link = "Pmenu"},        -- Popup menu: Normal item "kind".
+        PmenuKindSel  = { link = "PmenuSel" },    -- Popup menu: Selected item "kind".
+        PmenuExtra    = { link = "Pmenu" },       -- Popup menu: Normal item "extra text".
+        PmenuExtraSel = { link = "PmenuSel" },    -- Popup menu: Selected item "extra text".
+        PmenuSbar     = { link = "Pmenu" },       -- Popup menu: Scrollbar.
+        PmenuThumb    = { bg   = c.indigo_700 },  -- Popup menu: Thumb of the scrollbar.
+        PmenuMatch    = { fg   = c.indigo_800, bold = true }, -- Popup menu: Matched text in normal item.  Combined with |hl-Pmenu|.
+        PmenuMatchSel = {}, -- Popup menu: Matched text in selected item.  Combined with |hl-PmenuMatch| and |hl-PmenuSel|.
+        PmenuBorder        = { link = "Pmenu" },             -- Popup menu: border of popup menu.
+        PmenuShadow        = { link = "FloatShadow"},        -- Popup menu: blended areas when 'pumborder' is "shadow".
+        PmenuShadowThrough = { link = "FloatShadowThrough"}, -- Popup menu: shadow corners when 'pumborder' is "shadow".
+        ComplMatchIns      = {}, -- Matched text of the currently inserted completion.
+        PreInsert          = { link = "Added" },    -- Text inserted when "preinsert" is in 'completeopt'.
+        ComplHint          = { link = "NonText" },  -- Virtual text of the currently selected completion.
+        ComplHintMore      = { link = "MoreMsg" },  -- The additional information of the virtual text.
+        WildMenu           = { link = "PmenuSel" }, -- Current match in 'wildmenu' completion.
 
-        QuickFixLine            = { bg = utils.shade(c.indigo_300, 0.5, c.bg) }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-        -- SnippetTabstop       = {}, -- Tabstops in snippets. |vim.snippet|
-        -- SnippetTabstopActive = {}, -- The currently active tabstop. |vim.snippet|
-        SpecialKey              = { fg = c.indigo_700 }, -- Unprintable characters: Text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+        QuickFixLine         = { bg   = utils.shade(c.indigo_300, 0.5, c.bg) }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+        SnippetTabstop       = { link = "Visual" },         -- Tabstops in snippets. |vim.snippet|
+        SnippetTabstopActive = { link = "SnippetTabstop" }, -- The currently active tabstop. |vim.snippet|
+        SpecialKey           = { link = "Special" },     -- Unprintable characters: Text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 
-        SpellBad   = { undercurl = true, sp = c.red },    -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-        SpellCap   = { undercurl = true, sp = c.yellow }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-        SpellLocal = { undercurl = true, sp = c.green },  -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-        SpellRare  = { undercurl = true, sp = c.red },    -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
+        SpellBad   = { undercurl = true, sp = c.red_800 },    -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+        SpellCap   = { undercurl = true, sp = c.yellow_900 }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+        SpellLocal = { undercurl = true, sp = c.green_900 },  -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+        SpellRare  = { undercurl = true, sp = c.blue_900 }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
 
-        StatusLine          = { fg = c.fg, bg         = c.indigo_100 }, -- Status line of current window.
-        StatusLineNC        = { fg = c.indigo_800, bg = c.indigo_100 }, -- Status lines of not    -current windows.
-        -- StatusLineTerm   = {}, -- Status line of |terminal| window.
-        -- StatusLineTermNC = {}, -- Status line of non-current |terminal| windows.
-        -- TabLine          = {}, -- Tabpages line, not active tabpage label.
-        -- TabLineFill      = {}, -- Tabpages line, where there are no labels.
-        -- TabLineSel       = {}, -- Tabpages line, active tabpage label.
-
-        -- Underlined = { underline = true },
+        StatusLine       = { fg = c.indigo_600, bg = c.indigo_200, bold = true }, -- Status line of current window.
+        StatusLineNC     = { fg = c.indigo_800, bg = c.indigo_100, bold = true }, -- Status lines of not-current windows.
+        StatusLineTerm   = { fg = c.purple_800, bg = c.purple_300, bold = true }, -- Status line of |terminal| window.
+        StatusLineTermNC = { link = "StatusLineNC" }, -- Status line of non-current |terminal| windows.
+        TabLine          = { link = "TabLineFill"  }, -- Tabpages line, not active tabpage label.
+        TabLineFill      = { link = "StatusLineNC" }, -- Tabpages line, where there are no labels.
+        TabLineSel       = { fg = c.fg, bg = c.indigo_300, bold = true, italic = true}, -- Tabpages line, active tabpage label.
 
 
         -----------------------------------------------------
         -----------------------------------------------------
-        -- Diff Related highlights
+        -- Diff related highlights
         -----------------------------------------------------
         -----------------------------------------------------
         Added   = { fg = c.green_800},   -- added line in a diff
@@ -146,9 +144,9 @@ local function set_groups()
         DiffText    = { bg = c.indigo_300 },           -- Diff mode: Changed text within a changed line. |diff.txt|
         DiffTextAdd = { bg = c.green_300 },            -- Diff mode: Added text within a changed line.  Linked to |hl-DiffText| by default. |diff.txt|
 
-        -- ["@diff.plus"]  = {}, -- added text (for diff files)
-        -- ["@diff.minus"] = {}, -- deleted text (for diff files)
-        -- ["@diff.delta"] = {}, -- changed text (for diff files)
+        ["@diff.plus"]  = { link = "Added" },   -- added text (for diff files)
+        ["@diff.minus"] = { link = "Removed" }, -- deleted text (for diff files)
+        ["@diff.delta"] = { link = "Changed" }, -- changed text (for diff files)
 
         -----------------------------------------------------
         -----------------------------------------------------
@@ -171,31 +169,31 @@ local function set_groups()
         Conditional = { link = "Statement" },               -- if, then, else, endif, switch, etc.
         Repeat      = { link = "Statement" },               -- for, do, while, etc.
         Label       = { link = "Statement" },               -- case, default, etc.
-        -- Operator = {}, -- "sizeof", "+", "*", etc.
+        Operator    = { fg = c.indigo_900 }, -- "sizeof", "+", "*", etc.
         Keyword     = { link = "Statement" },               -- any other keyword
         Exception   = { link = "Statement" },               -- try, catch, throw
 
         PreProc      = { link = "Statement" }, -- generic Preprocessor
-        -- Include   = {}, -- preprocessor #include
-        -- Define    = {}, -- preprocessor #define
-        -- Macro     = {}, -- same as Define
-        -- PreCondit = {}, -- preprocessor #if, #else, #endif, etc.
+        Include   = { link = "PreProc" }, -- preprocessor #include
+        Define    = { link = "PreProc" }, -- preprocessor #define
+        Macro     = { link = "PreProc" }, -- same as Define
+        PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
 
-        Type            = { fg = c.red_900 }, -- int, long, char, etc.
-        -- StorageClass = {}, -- static, register, volatile, etc.
-        -- Structure    = {}, -- struct, union, enum, etc.
-        -- Typedef      = {}, -- a typedef
+        Type         = { fg = c.purple_900 }, -- int, long, char, etc.
+        StorageClass = { link = "Type" }, -- static, register, volatile, etc.
+        Structure    = { link = "Type" }, -- struct, union, enum, etc.
+        Typedef      = { link = "Type" }, -- a typedef
 
         Special           = { fg = c.indigo_700 }, -- any special symbol
-        -- SpecialChar    = {}, -- special character in a constant
-        -- Tag            = {}, -- you can use CTRL-] on this
         Delimiter         = { fg = c.fg },         -- character that needs attention
-        -- SpecialComment = {}, -- special things inside a comment
-        -- Debug          = {}, -- debugging statements
+        SpecialChar = { link = "Special" }, -- special character in a constant
+        Tag         = { link = "Special" }, -- you can use CTRL-] on this
+        SpecialComment = { link = "Special" }, -- special things inside a comment
+        Debug          = { link = "Special" }, -- debugging statements
 
         Underlined = { underline = true }, -- text that stands out, HTML links
-        -- Ignore  = {}, -- left blank, hidden  |hl-Ignore|
-        -- Error   = {}, -- any erroneous construct
+        Ignore     = { fg = c.bg }, -- left blank, hidden  |hl-Ignore|
+        Error      = { fg = c.red_800, bg = c.red_100, bold = true }, -- any erroneous construct
         Todo       = { fg = c.blue_800, bold = true }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 
@@ -205,43 +203,43 @@ local function set_groups()
         -----------------------------------------------------
         -----------------------------------------------------
         DiagnosticError = { fg = c.red_800,    bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticWarn  = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticInfo  = { fg = c.green_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticHint  = { fg = c.blue_800,   bold = true}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        -- DiagnosticOk = {}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticWarn = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticInfo = { fg = c.purple_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticHint = { fg = c.blue_800,   bold = true}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticOk   = { fg = c.green_800 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 
-        -- DiagnosticVirtualTextError = {}, -- Used for "Error" diagnostic virtual text.
-        -- DiagnosticVirtualTextWarn  = {}, -- Used for "Warn" diagnostic virtual text.
-        -- DiagnosticVirtualTextInfo  = {}, -- Used for "Info" diagnostic virtual text.
-        -- DiagnosticVirtualTextHint  = {}, -- Used for "Hint" diagnostic virtual text.
-        -- DiagnosticVirtualTextOk    = {}, -- Used for "Ok" diagnostic virtual text.
+        DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text.
+        DiagnosticVirtualTextWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual text.
+        DiagnosticVirtualTextInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" diagnostic virtual text.
+        DiagnosticVirtualTextHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" diagnostic virtual text.
+        DiagnosticVirtualTextOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" diagnostic virtual text.
 
-        -- DiagnosticVirtualLinesError = {}, -- Used for "Error" diagnostic virtual lines.
-        -- DiagnosticVirtualLinesWarn  = {}, -- Used for "Warn" diagnostic virtual lines.
-        -- DiagnosticVirtualLinesInfo  = {}, -- Used for "Info" diagnostic virtual lines.
-        -- DiagnosticVirtualLinesHint  = {}, -- Used for "Hint" diagnostic virtual lines.
-        -- DiagnosticVirtualLinesOk    = {}, -- Used for "Ok" diagnostic virtual lines.
+        DiagnosticVirtualLinesError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual lines.
+        DiagnosticVirtualLinesWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual lines.
+        DiagnosticVirtualLinesInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" diagnostic virtual lines.
+        DiagnosticVirtualLinesHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" diagnostic virtual lines.
+        DiagnosticVirtualLinesOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" diagnostic virtual lines.
 
-        -- DiagnosticUnderlineError = {}, -- Used to underline "Error" diagnostics.
-        -- DiagnosticUnderlineWarn  = {}, -- Used to underline "Warn" diagnostics.
-        -- DiagnosticUnderlineInfo  = {}, -- Used to underline "Info" diagnostics.
-        -- DiagnosticUnderlineHint  = {}, -- Used to underline "Hint" diagnostics.
-        -- DiagnosticUnderlineOk    = {}, -- Used to underline "Ok" diagnostics.
+        DiagnosticUnderlineError = { sp = c.red_800,    italic = true, underline = true }, -- Used to underline "Error" diagnostics.
+        DiagnosticUnderlineWarn  = { sp = c.yellow_800, italic = true, underline = true }, -- Used to underline "Warn" diagnostics.
+        DiagnosticUnderlineInfo  = { sp = c.purple_800, italic = true, underline = true }, -- Used to underline "Info" diagnostics.
+        DiagnosticUnderlineHint  = { sp = c.blue_800,   italic = true, underline = true }, -- Used to underline "Hint" diagnostics.
+        DiagnosticUnderlineOk    = { sp = c.green_800,  italic = true, underline = true }, -- Used to underline "Ok" diagnostics.
 
-        -- DiagnosticFloatingError = {}, -- Used to color "Error" diagnostic messages in diagnostics float.
-        -- DiagnosticFloatingWarn  = {}, -- Used  to color "Warn" diagnostic messages in diagnostics float.
-        -- DiagnosticFloatingInfo  = {}, -- Used to color "Info" diagnostic messages in diagnostics float.
-        -- DiagnosticFloatingHint  = {}, -- Used to color "Hint" diagnostic messages in diagnostics float.
-        -- DiagnosticFloatingOk    = {}, -- Used to color "Ok" diagnostic messages in diagnostics float.
+        DiagnosticFloatingError = { link = "DiagnosticError" }, -- Used to color "Error" diagnostic messages in diagnostics float.
+        DiagnosticFloatingWarn  = { link = "DiagnosticWarn"  }, -- Used  to color "Warn" diagnostic messages in diagnostics float.
+        DiagnosticFloatingInfo  = { link = "DiagnosticInfo"  }, -- Used to color "Info" diagnostic messages in diagnostics float.
+        DiagnosticFloatingHint  = { link = "DiagnosticHint"  }, -- Used to color "Hint" diagnostic messages in diagnostics float.
+        DiagnosticFloatingOk    = { link = "DiagnosticOk"    }, -- Used to color "Ok" diagnostic messages in diagnostics float.
 
-        -- DiagnosticSignError = {}, -- Used for "Error" signs in sign column.
-        -- DiagnosticSignWarn  = {}, -- Used for "Warn" signs in sign column.
-        -- DiagnosticSignInfo  = {}, -- Used for "Info" signs in sign column.
-        -- DiagnosticSignHint  = {}, -- Used for "Hint" signs in sign column.
-        -- DiagnosticSignOk    = {}, -- Used for "Ok" signs in sign column.
+        DiagnosticSignError = { link = "DiagnosticError" }, -- Used for "Error" signs in sign column.
+        DiagnosticSignWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" signs in sign column.
+        DiagnosticSignInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" signs in sign column.
+        DiagnosticSignHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" signs in sign column.
+        DiagnosticSignOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" signs in sign column.
 
-        -- DiagnosticDeprecated  = {}, -- Used for deprecated or obsolete code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline = false })`.
-        -- DiagnosticUnnecessary = {}, -- Used for unnecessary or unused code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline  = false })`.
+        DiagnosticDeprecated = { fg = c.red_800, strikethrough = true, italic = true}, -- Used for deprecated or obsolete code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline = false })`.
+        DiagnosticUnnecessary = { fg = c.indigo_400, bold = true }, -- Used for unnecessary or unused code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline  = false })`.
 
 
         -----------------------------------------------------
@@ -249,16 +247,16 @@ local function set_groups()
         -- LSP |help lsp-highlight|
         -----------------------------------------------------
         -----------------------------------------------------
-        LspReferenceText      = { bg = c.indigo_200 }, -- used for highlighting "text" references
-        -- LspReferenceRead   = {},   -- used for highlighting "read" references
-        -- LspReferenceWrite  = {},   -- used for highlighting "write" references
-        -- LspReferenceTarget = {},   -- used for highlighting reference targets (e.g. in a hover range)
-        -- LspInlayHint       = {},   -- used for highlighting inlay hints
+        LspReferenceText   = { bg = c.indigo_200 }, -- used for highlighting "text" references
+        LspReferenceRead   = { link = "LspReferenceText" },   -- used for highlighting "read" references
+        LspReferenceWrite  = { link = "LspReferenceText" },   -- used for highlighting "write" references
+        LspReferenceTarget = { link = "LspReferenceText" },   -- used for highlighting reference targets (e.g. in a hover range)
+        LspInlayHint       = { fg = c.indigo_400, italic = true},   -- used for highlighting inlay hints
 
-        -- LspCodeLens          = {}, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
-        -- LspCodeLensSeparator = {}, -- Used to color the separator between two or more code lenses.
+        LspCodeLens        = { link = "NonText" }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+        LspCodeLensSeparator = { link = "LspCodeLens" }, -- Used to color the separator between two or more code lenses.
 
-        -- LspSignatureActiveParameter = {}, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+        LspSignatureActiveParameter = { link = "Visual" }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
 
 
         -----------------------------------------------------
@@ -270,36 +268,36 @@ local function set_groups()
         -- However, when an lsp has semantic tokens, it links `lsp.type.comments` to `Comments`, which overrides
         -- Treesitter's highlights for those different types of comments. So basically, let's not do anything
         -- with this highlight.
-        ["@lsp.type.comment"]          = {}, -- Tokens that represent a comment
-        -- ["@lsp.type.class"]         = {}, -- Identifiers that declare or reference a class type
-        -- ["@lsp.type.decorator"]     = {}, -- Identifiers that declare or reference decorators and annotations
-        -- ["@lsp.type.enum"]          = {}, -- Identifiers that declare or reference an enumeration type
-        -- ["@lsp.type.enumMember"]    = {}, -- Identifiers that declare or reference an enumeration property, constant, or member
-        -- ["@lsp.type.event"]         = {}, -- Identifiers that declare an event property
-        -- ["@lsp.type.function"]      = {}, -- Identifiers that declare a function
-        -- ["@lsp.type.interface"]     = {}, -- Identifiers that declare or reference an interface type
-        -- ["@lsp.type.keyword"]       = {}, -- Tokens that represent a language keyword
-        -- ["@lsp.type.macro"]         = {}, -- Identifiers that declare a macro
-        -- ["@lsp.type.method"]        = {}, -- Identifiers that declare a member function or method
-        -- ["@lsp.type.modifier"]      = {}, -- Tokens that represent a modifier
-        -- ["@lsp.type.namespace"]     = {}, -- Identifiers that declare or reference a namespace, module, or package
-        -- ["@lsp.type.number"]        = {}, -- Tokens that represent a number literal
-        -- ["@lsp.type.operator"]      = {}, -- Tokens that represent an operator
-        -- ["@lsp.type.parameter"]     = {}, -- Identifiers that declare or reference a function or method parameters
-        -- ["@lsp.type.property"]      = {}, -- Identifiers that declare or reference a member property, member field, or member variable
-        -- ["@lsp.type.regexp"]        = {}, -- Tokens that represent a regular expression literal
-        -- ["@lsp.type.string"]        = {}, -- Tokens that represent a string literal
-        -- ["@lsp.type.struct"]        = {}, -- Identifiers that declare or reference a struct type
-        -- ["@lsp.type.type"]          = {}, -- Identifiers that declare or reference a type that is not covered above
-        -- ["@lsp.type.typeParameter"] = {}, -- Identifiers that declare or reference a type parameter
-        -- ["@lsp.type.variable"]      = {}, -- Identifiers that declare or reference a local or global variable
+        ["@lsp.type.comment"]       = {}, -- Tokens that represent a comment
+        ["@lsp.type.class"]         = { link = "@type" },      -- Identifiers that declare or reference a class type
+        ["@lsp.type.decorator"]     = { link = "@attribute" }, -- Identifiers that declare or reference decorators and annotations
+        ["@lsp.type.enum"]          = { link = "@type" },      -- Identifiers that declare or reference an enumeration type
+        ["@lsp.type.enumMember"]    = { link = "@constant" },  -- Identifiers that declare or reference an enumeration property, constant, or member
+        ["@lsp.type.event"]         = { link = "@type" }, -- Identifiers that declare an event property
+        ["@lsp.type.function"]      = { link = "@function" }, -- Identifiers that declare a function
+        ["@lsp.type.interface"]     = { link = "@type" }, -- Identifiers that declare or reference an interface type
+        ["@lsp.type.keyword"]       = { link = "@keyword" }, -- Tokens that represent a language keyword
+        ["@lsp.type.macro"]         = { link = "@constant.macro" }, -- Identifiers that declare a macro
+        ["@lsp.type.method"]        = { link = "@function.method" }, -- Identifiers that declare a member function or method
+        ["@lsp.type.modifier"]      = { link = "@type.qualifier" }, -- Tokens that represent a modifier
+        ["@lsp.type.namespace"]     = { link = "@module" }, -- Identifiers that declare or reference a namespace, module, or package
+        ["@lsp.type.number"]        = { link = "@number" }, -- Tokens that represent a number literal
+        ["@lsp.type.operator"]      = { link = "@operator" }, -- Tokens that represent an operator
+        ["@lsp.type.parameter"]     = { link = "@variable.parameter" }, -- Identifiers that declare or reference a function or method parameters
+        ["@lsp.type.property"]      = { link = "@property" }, -- Identifiers that declare or reference a member property, member field, or member variable
+        ["@lsp.type.regexp"]        = { link = "@string.regexp" }, -- Tokens that represent a regular expression literal
+        ["@lsp.type.string"]        = { link = "@string" }, -- Tokens that represent a string literal
+        ["@lsp.type.struct"]        = { link = "@type" }, -- Identifiers that declare or reference a struct type
+        ["@lsp.type.type"]          = { link = "@type" }, -- Identifiers that declare or reference a type that is not covered above
+        ["@lsp.type.typeParameter"] = { link = "@type.definition" }, -- Identifiers that declare or reference a type parameter
+        ["@lsp.type.variable"]      = { link = "@variable" }, -- Identifiers that declare or reference a local or global variable
 
+        ["@lsp.mod.deprecated"]     = { link = "DiagnosticDeprecated" }, -- Symbols that should no longer be used
         -- ["@lsp.mod.abstract"]       = {}, -- Types and member functions that are abstract
         -- ["@lsp.mod.async"]          = {}, -- Functions that are marked async
         -- ["@lsp.mod.declaration"]    = {}, -- Declarations of symbols
         -- ["@lsp.mod.defaultLibrary"] = {}, -- Symbols that are part of the standard library
         -- ["@lsp.mod.definition"]     = {}, -- Definitions of symbols, for example, in header files
-        -- ["@lsp.mod.deprecated"]     = {}, -- Symbols that should no longer be used
         -- ["@lsp.mod.documentation"]  = {}, -- Occurrences of symbols in documentation
         -- ["@lsp.mod.modification"]   = {}, -- Variable references where the variable is assigned to
         -- ["@lsp.mod.readonly"]       = {}, -- Readonly variables and member fields (constants)
@@ -311,56 +309,55 @@ local function set_groups()
         -- Treesitter |help treesitter-highlight-groups|
         -----------------------------------------------------
         -----------------------------------------------------
-        -- ["@variable"]                   = {}, -- various variable names
-        -- ["@variable.builtin"]           = {}, -- built-in variable names (e.g. `this`, `self`)
-        -- ["@variable.parameter"]         = {}, -- parameters of a function
-        -- ["@variable.parameter.builtin"] = {}, -- special parameters (e.g. `_`, `it`)
-        ["@variable.member"]               = { link = "Identifier" }, -- object and struct fields
+        ["@variable"]         = { fg = c.fg }, -- various variable names
+        ["@variable.builtin"] = { fg = c.fg, bold = true }, -- built-in variable names (e.g. `this`, `self`)
+        -- ["@variable.parameter"]         = { fg = c.fg }, -- parameters of a function
+        ["@variable.parameter.builtin"] = { link = "@variable.builtin" }, -- special parameters (e.g. `_`, `it`)
+        ["@variable.member"]            = { link = "Identifier" }, -- object and struct fields
 
-        -- ["@constant"]         = {}, -- constant identifiers
-        -- ["@constant.builtin"] = {}, -- built-in constant values
+        ["@constant"]         = { link = "Constant" }, -- constant identifiers
+        ["@constant.builtin"] = { link = "Special" }, -- built-in constant values
         -- ["@constant.macro"]   = {}, -- constants defined by the preprocessor
 
-        -- ["@module"]         = {}, -- modules or namespaces
-        -- ["@module.builtin"] = {}, -- built-in modules or namespaces
-        -- ["@label"]          = {}, -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
+        ["@module"]         = { link = "Structure" }, -- modules or namespaces
+        ["@module.builtin"] = { link = "Special" }, -- built-in modules or namespaces
+        ["@label"]          = { link = "Label" }, -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
 
-        -- ["@string"]                = {}, -- string literals
+        ["@string"]         = { link = "String" }, -- string literals
+        ["@string.special"] = { link = "SpecialChar" }, -- other special strings (e.g. dates)
+        ["@string.regexp"]  = { link = "@string.special" }, -- regular expressions
+        ["@string.escape"]  = { link = "@string.special" }, -- escape sequences
+        ["@string.special.path"] = { bold = true, italic = true }, -- filenames
+        ["@string.special.url"]  = { bold = true, underline = true }, -- URIs (e.g. hyperlinks)
         -- ["@string.documentation"]  = {}, -- string documenting code (e.g. Python docstrings)
-        -- ["@string.regexp"]         = {}, -- regular expressions
-        -- ["@string.escape"]         = {}, -- escape sequences
-        -- ["@string.special"]        = {}, -- other special strings (e.g. dates)
         -- ["@string.special.symbol"] = {}, -- symbols or atoms
-        -- ["@string.special.path"]   = {}, -- filenames
-        -- ["@string.special.url"]    = {}, -- URIs (e.g. hyperlinks)
 
-        -- ["@character"]         = {}, -- character literals
-        -- ["@character.special"] = {}, -- special characters (e.g. wildcards)
+        ["@character"]         = { link = "Character" }, -- character literals
+        ["@character.special"] = { link = "Special" }, -- special characters (e.g. wildcards)
 
-        -- ["@boolean"]      = {}, -- boolean literals
-        -- ["@number"]       = {}, -- numeric literals
-        -- ["@number.float"] = {}, -- floating-point number literals
+        ["@boolean"]      = { link = "Boolean" }, -- boolean literals
+        ["@number"]       = { link = "Number" }, -- numeric literals
+        ["@number.float"] = { link = "Number"}, -- floating-point number literals
 
-        -- ["@type"]            = {}, -- type or class definitions and annotations
-        -- ["@type.builtin"]    = {}, -- built-in types
+        ["@type"]            = { link = "Type" }, -- type or class definitions and annotations
+        ["@type.builtin"]    = { link = "Special" }, -- built-in types
         -- ["@type.definition"] = {}, -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
 
-        -- ["@attribute"]         = {}, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
-        -- ["@attribute.builtin"] = {}, -- builtin annotations (e.g. `@property` in Python)
-        -- ["@property"]          = {}, -- the key in key/value pairs
+        ["@attribute"]         = { link = "Macro" }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
+        ["@attribute.builtin"] = { link = "Special" }, -- builtin annotations (e.g. `@property` in Python)
+        ["@property"]          = { link = "Identifier" }, -- the key in key/value pairs
 
-        -- ["@function"]         = {}, -- function definitions
-        -- ["@function.builtin"] = {}, -- built-in functions
+        ["@function"]         = { link = "Function" }, -- function definitions
+        ["@function.builtin"] = { link = "Special" }, -- built-in functions
         -- ["@function.call"]    = {}, -- function calls
         -- ["@function.macro"]   = {}, -- preprocessor macros
-
         -- ["@function.method"]      = {}, -- method definitions
         -- ["@function.method.call"] = {}, -- method calls
 
-        -- ["@constructor"] = {}, -- constructor calls and definitions
-        -- ["@operator"]    = {}, -- symbolic operators (e.g. `+`, `*`)
+        ["@constructor"] = { link = "Special" }, -- constructor calls and definitions
+        ["@operator"]    = { link = "Operator" }, -- symbolic operators (e.g. `+`, `*`)
 
-        -- ["@keyword"]           = {}, -- keywords not fitting into specific categories
+        ["@keyword"] = { link = "Keyword" }, -- keywords not fitting into specific categories
         -- ["@keyword.coroutine"] = {}, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
         -- ["@keyword.function"]  = {}, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
         -- ["@keyword.operator"]  = {}, -- operators that are English words (e.g. `and`, `or`)
@@ -371,31 +368,28 @@ local function set_groups()
         -- ["@keyword.return"]    = {}, -- keywords like `return` and `yield`
         -- ["@keyword.debug"]     = {}, -- keywords related to debugging
         -- ["@keyword.exception"] = {}, -- keywords related to exceptions (e.g. `throw`, `catch`)
-
-        -- ["@keyword.conditional"]         = {}, -- keywords related to conditionals (e.g. `if`, `else`)
+        -- ["@keyword.directive"]   = {}, -- various preprocessor directives and shebangs
+        -- ["@keyword.conditional"] = {}, -- keywords related to conditionals (e.g. `if`, `else`)
         -- ["@keyword.conditional.ternary"] = {}, -- ternary operator (e.g. `?`, `:`)
+        -- ["@keyword.directive.define"]    = {}, -- preprocessor definition directives
 
-        -- ["@keyword.directive"]        = {}, -- various preprocessor directives and shebangs
-        -- ["@keyword.directive.define"] = {}, -- preprocessor definition directives
-
-        -- ["@punctuation.delimiter"] = {}, -- delimiters (e.g. `;`, `.`, `,`)
+        ["@punctuation"] = { link = "Delimiter" }, -- delimiters (e.g. `;`, `.`, `,`)
+        ["@punctuation.special"]   = { link = "Special" }, -- special symbols (e.g. `{}` in string interpolation)
         -- ["@punctuation.bracket"]   = {}, -- brackets (e.g. `()`, `{}`, `[]`)
-        -- ["@punctuation.special"]   = {}, -- special symbols (e.g. `{}` in string interpolation)
 
-        -- ["@comment"]               = {}, -- line and block comments
+        ["@comment"]         = { link = "Comment" }, -- line and block comments
+        ["@comment.error"]   = { link = "DiagnosticError" }, -- error  -type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
+        ["@comment.warning"] = { link = "DiagnosticWarn" }, -- warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
+        ["@comment.todo"]    = { link = "Todo" }, -- todo   -type comments (e.g. `TODO`, `WIP`)
+        ["@comment.note"]    = { link = "DiagnosticInfo" }, -- note   -type comments (e.g. `NOTE`, `INFO`, `XXX`)
         -- ["@comment.documentation"] = {}, -- comments documenting code
 
-        -- ["@comment.error"]   = {}, -- error  -type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
-        -- ["@comment.warning"] = {}, -- warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
-        -- ["@comment.todo"]    = {}, -- todo   -type comments (e.g. `TODO`, `WIP`)
-        -- ["@comment.note"]    = {}, -- note   -type comments (e.g. `NOTE`, `INFO`, `XXX`)
+        ["@markup.strong"] = { bold   = true }, -- bold text
+        ["@markup.italic"] = { italic = true }, -- italic text
+        ["@markup.strikethrough"] = { strikethrough = true}, -- struck-through text
+        ["@markup.underline"]     = { underline     = true}, -- underlined text (only for literal underline markup!)
 
-        -- ["@markup.strong"]        = {}, -- bold text
-        -- ["@markup.italic"]        = {}, -- italic text
-        -- ["@markup.strikethrough"] = {}, -- struck-through text
-        -- ["@markup.underline"]     = {}, -- underlined text (only for literal underline markup!)
-
-        -- ["@markup.heading"]   = {}, -- headings, titles (including markers)
+        ["@markup.heading"]   = { link = "Title" }, -- headings, titles (including markers)
         -- ["@markup.heading.1"] = {}, -- top-level heading
         -- ["@markup.heading.2"] = {}, -- section heading
         -- ["@markup.heading.3"] = {}, -- subsection heading
@@ -406,7 +400,7 @@ local function set_groups()
         -- ["@markup.quote"] = {}, -- block quotes
         -- ["@markup.math"]  = {}, -- math environments (e.g. `$ ... $` in LaTeX)
 
-        -- ["@markup.link"]       = {}, -- text references, footnotes, citations, etc.
+        ["@markup.link"]       = { link = "Underlined" }, -- text references, footnotes, citations, etc.
         -- ["@markup.link.label"] = {}, -- link, reference descriptions
         -- ["@markup.link.url"]   = {}, -- URL-style links
 
@@ -417,8 +411,8 @@ local function set_groups()
         -- ["@markup.list.checked"]   = {}, -- checked todo  -style list markers
         -- ["@markup.list.unchecked"] = {}, -- unchecked todo-style list markers
 
-        -- ["@tag"]           = {}, -- XML-style tag names (e.g. in XML, HTML, etc.)
-        -- ["@tag.builtin"]   = {}, -- builtin tag names (e.g. HTML5 tags)
+        ["@tag"]           = { link = "Tag" }, -- XML-style tag names (e.g. in XML, HTML, etc.)
+        ["@tag.builtin"]   = { link = "Special" }, -- builtin tag names (e.g. HTML5 tags)
         -- ["@tag.attribute"] = {}, -- XML-style tag attributes
         -- ["@tag.delimiter"] = {}, -- XML-style tag delimiters
 
