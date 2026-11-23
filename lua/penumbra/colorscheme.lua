@@ -40,7 +40,7 @@ if vim.o.background == 'dark' then
         red_50 = '#1e1515',
 
         yellow_950 = '#f6f1d6',
-        yellow_900 = '#faf1bf',
+        yellow_900 = '#faf3cd',
         yellow_800 = '#ecde79',
         yellow_700 = '#bbaf5d',
         yellow_600 = '#9c9255',
@@ -51,8 +51,8 @@ if vim.o.background == 'dark' then
         yellow_100 = '#23221e',
         yellow_50 = '#181715',
 
-        green_950 = '#def7d7',
-        green_900 = '#cbf9bf',
+        green_950 = '#dbebde',
+        green_900 = '#d2f9c7',
         green_800 = '#b9f0a9',
         green_700 = '#76bf5c',
         green_600 = '#679f55',
@@ -74,15 +74,6 @@ if vim.o.background == 'dark' then
         blue_200 = '#292f33',
         blue_100 = '#1f2225',
         blue_50 = '#151819',
-
-        yellow = '#fef9c3',
-        yellow_bg = '#292108',
-        red = '#f5d8d9',
-        red_bg = '#2d1e1e',
-        blue = '#c7ddf3',
-        blue_bg = '#1f2226',
-        green = '#bbf7d0',
-        green_bg = '#1f231e',
     }
 elseif vim.o.background == 'light' then
     M = {
@@ -98,14 +89,6 @@ elseif vim.o.background == 'light' then
         indigo_950 = '#20212d',
         -- indigo_950  = '#16171d',
 
-        yellow_bg = '#fef9c3',
-        yellow = '#605434',
-        red_bg = '#f5d8d9',
-        red = '#693638',
-        blue_bg = '#c7ddf3',
-        blue = '#1f2226',
-        green_bg = '#bbf7d0',
-        green = '#4d6246',
     }
 end
 
