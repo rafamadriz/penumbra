@@ -77,23 +77,88 @@ if vim.o.background == 'dark' then
     }
 elseif vim.o.background == 'light' then
     M = {
-        -- indigo_50 = '#f1eff7',
-        indigo_50 = '#d9d8f3',
-        indigo_100 = '#c1c1f1',
-        indigo_200 = '#a6a8e8',
-        indigo_300 = '#878ad8',
-        indigo_600 = '#6e74c6',
-        indigo_700 = '#515793',
-        indigo_800 = '#3d426a',
-        indigo_900 = '#2b2d3f',
-        indigo_950 = '#20212d',
-        -- indigo_950  = '#16171d',
+        indigo_50 = '#e9e5f2',
+        indigo_100 = '#d0cff0',
+        indigo_200 = '#babaef',
+        indigo_300 = '#a6a8e8',
+        indigo_400 = '#878ad8',
+        indigo_500 = '#6e74c6',
+        indigo_600 = '#515793',
+        indigo_700 = '#3d426a',
+        indigo_800 = '#2b2c40',
+        indigo_900 = '#20212d',
+        indigo_950 = '#16171f',
 
+        purple_50 = '#faecfd',
+        purple_100 = '#edd1f3',
+        purple_200 = '#e7b3f1',
+        purple_300 = '#dc93e8',
+        purple_400 = '#c96dd7',
+        purple_500 = '#ad5bb9',
+        purple_600 = '#764d7d',
+        purple_700 = '#573b5c',
+        purple_800 = '#362a39',
+        purple_900 = '#271f29',
+        purple_950 = '#1a161b',
+
+        red_50 = '#ffecec',
+        red_100 = '#f4d3d2',
+        red_200 = '#ef9d9b',
+        red_300 = '#ea8885',
+        red_400 = '#e16e6c',
+        red_500 = '#cf524f',
+        red_600 = '#8d4847',
+        red_700 = '#683736',
+        red_800 = '#402828',
+        red_900 = '#2d1e1e',
+        red_950 = '#1e1515',
+
+        yellow_50 = '#f6f1d6',
+        yellow_100 = '#faf3cd',
+        yellow_200 = '#ecde79',
+        yellow_300 = '#bbaf5d',
+        yellow_400 = '#9c9255',
+        yellow_500 = '#847c4e',
+        yellow_600 = '#605c46',
+        yellow_700 = '#484535',
+        yellow_800 = '#302e27',
+        yellow_900 = '#23221e',
+        yellow_950 = '#181715',
+
+        green_50 = '#dbebde',
+        green_100 = '#d2f9c7',
+        green_200 = '#b9f0a9',
+        green_300 = '#76bf5c',
+        green_400 = '#679f55',
+        green_500 = '#5b864e',
+        green_600 = '#4c6246',
+        green_700 = '#394935',
+        green_800 = '#293027',
+        green_900 = '#1f231e',
+        green_950 = '#151815',
+
+        blue_50 = '#e3f2fd',
+        blue_100 = '#bfdff3',
+        blue_200 = '#8acef1',
+        blue_300 = '#67b7dd',
+        blue_400 = '#5e98b6',
+        blue_500 = '#558198',
+        blue_600 = '#4a5f6b',
+        blue_700 = '#384750',
+        blue_800 = '#292f33',
+        blue_900 = '#1f2225',
+        blue_950 = '#151819',
     }
 end
 
-M.fg = M.indigo_950
-M.bg = M.indigo_50
-M.secondary_bg = M.indigo_100
+if vim.o.background == 'dark' then
+    M.fg = M.indigo_950
+    M.bg = M.indigo_50
+    M.secondary_bg = M.indigo_100
+elseif vim.o.background == "light" then
+    M.fg = M.indigo_900
+    M.bg = M.indigo_100
+    M.secondary_bg = M.indigo_200
+end
 
 return M
