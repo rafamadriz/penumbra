@@ -7,6 +7,7 @@ local c
 
 ---@class penumbra.Config
 local default_config = {
+    flavor = "auto", -- auto, penumbra, penumbra-soft, penumbra-light
     terminal_colors = true,
     italics = {
         comments     = true,
@@ -455,13 +456,25 @@ function theme.colorscheme()
     vim.o.termguicolors = true
     vim.g.colors_name = "penumbra"
 
+    if config.flavor == "penumbra-light" then
+        vim.o.background = "light"
+    elseif config.flavor == "penumbra" then
+        vim.o.background = "dark"
+    end
+
     -- Drop the cached palette so it is rebuilt for the current 'background'.
     package.loaded["penumbra.colorscheme"] = nil
     c = require"penumbra.colorscheme"
 
+    if config.flavor == "soft" then
+        c.bg = c.indigo_100
+        c.secondary_bg = c.indigo_50
+    end
+
     if config.terminal_colors then
         set_terminal_colors()
     end
+
     set_groups()
 end
 

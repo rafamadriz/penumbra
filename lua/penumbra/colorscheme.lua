@@ -2,7 +2,6 @@ local M
 
 if vim.o.background == 'dark' then
     M = {
-        -- https://www.inclusivecolors.com/?style_dictionary=eyJjb2xvciI6eyJiYXNlIjp7ImluZGlnbyI6eyI1MCI6eyJ2YWx1ZSI6IiMxNjE3MWQiLCJsb2NrZWQiOnRydWV9LCIxMDAiOnsidmFsdWUiOiIjMjAyMTJkIiwibG9ja2VkIjp0cnVlfSwiMjAwIjp7InZhbHVlIjoiIzJiMmQzZiIsImxvY2tlZCI6dHJ1ZX0sIjMwMCI6eyJ2YWx1ZSI6IiMzZDQyNmEiLCJsb2NrZWQiOnRydWV9LCI0MDAiOnsidmFsdWUiOiIjNTE1NzkzIiwibG9ja2VkIjp0cnVlfSwiNTAwIjp7InZhbHVlIjoiIzZlNzRjNiIsImxvY2tlZCI6dHJ1ZX0sIjYwMCI6eyJ2YWx1ZSI6IiM4NzhhZDgiLCJsb2NrZWQiOnRydWV9LCI3MDAiOnsidmFsdWUiOiIjYTZhOGU4IiwibG9ja2VkIjp0cnVlfSwiODAwIjp7InZhbHVlIjoiI2MxYzFmMSIsImxvY2tlZCI6dHJ1ZX0sIjkwMCI6eyJ2YWx1ZSI6IiNkOWQ4ZjMiLCJsb2NrZWQiOnRydWV9LCI5NTAiOnsidmFsdWUiOiIjZjFlZmY3IiwibG9ja2VkIjp0cnVlfX19fX0%253D
         indigo_950 = '#e9e5f2',
         indigo_900 = '#d0cff0',
         indigo_800 = '#babaef',
