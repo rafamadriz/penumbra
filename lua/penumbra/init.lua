@@ -7,24 +7,24 @@ local config = require'penumbra.config'
 local c
 
 local function set_terminal_colors()
-    -- vim.g.terminal_color_0 = c.editorBackground
-    -- vim.g.terminal_color_1 = c.syntaxError
-    -- vim.g.terminal_color_2 = c.successText
-    -- vim.g.terminal_color_3 = c.warningEmphasis
-    -- vim.g.terminal_color_4 = c.syntaxFunction
-    -- vim.g.terminal_color_5 = c.syntaxKeyword
-    -- vim.g.terminal_color_6 = c.linkText
-    -- vim.g.terminal_color_7 = c.mainText
-    -- vim.g.terminal_color_8 = c.inactiveText
-    -- vim.g.terminal_color_9 = c.errorText
-    -- vim.g.terminal_color_10 = c.stringText
-    -- vim.g.terminal_color_11 = c.warningText
-    -- vim.g.terminal_color_12 = c.syntaxOperator
-    -- vim.g.terminal_color_13 = c.syntaxError
-    -- vim.g.terminal_color_14 = c.stringText
-    -- vim.g.terminal_color_15 = c.commentText
-    -- vim.g.terminal_color_background = c.editorBackground
-    -- vim.g.terminal_color_foreground = c.mainText
+    -- https://www.ditig.com/256-colors-cheat-sheet
+    vim.g.terminal_color_0  = c.bg
+    vim.g.terminal_color_1  = c.red_800
+    vim.g.terminal_color_2  = c.green_900
+    vim.g.terminal_color_3  = c.yellow_900
+    vim.g.terminal_color_4  = c.indigo_800
+    vim.g.terminal_color_5  = c.purple_800
+    vim.g.terminal_color_6  = c.blue_900
+    vim.g.terminal_color_7  = c.indigo_900
+
+    vim.g.terminal_color_8  = c.indigo_300
+    vim.g.terminal_color_9  = c.red_400
+    vim.g.terminal_color_10 = c.green_800
+    vim.g.terminal_color_11 = c.yellow_600
+    vim.g.terminal_color_12 = c.indigo_700
+    vim.g.terminal_color_13 = c.purple_800
+    vim.g.terminal_color_14 = c.blue_800
+    vim.g.terminal_color_15 = c.fg
 end
 
 local function set_groups()
