@@ -77,18 +77,18 @@ local function set_groups()
         FoldColumn   = { link = "SignColumn" },            -- 'foldcolumn'
         SignColumn   = { link = "Normal" },                -- Column where |signs| are displayed.
 
-        Search     = { bg = c.indigo_300 },                         -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-        IncSearch  = { bg = c.indigo_900, fg = c.bg, bold = true }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c".
+        Search     = { bg = c.indigo_300 },                           -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+        IncSearch  = { bg = c.indigo_900, fg = c.bg, bold = true },   -- 'incsearch' highlighting; also used for the text replaced with ":s///c".
         CurSearch  = { link = "IncSearch" },                          -- Current match for the last search pattern (see 'hlsearch').
         MatchParen = { fg   = c.bg, bg = c.purple_800, bold = true }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         Substitute = { link = "IncSearch" },                          -- |:substitute| replacement text highlighting.
 
-        LineNr       = { fg = c.indigo_300, bold = true }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-        LineNrAbove  = { link = "LineNr"}, -- Line number for when the 'relativenumber' option is set, above the cursor line.
-        LineNrBelow  = { link = "LineNr" }, -- Line number for when the 'relativenumber' option is set, below the cursor line.
+        LineNr       = { fg = c.indigo_300, bold = true },   -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNrAbove  = { link = "LineNr"},                   -- Line number for when the 'relativenumber' option is set, above the cursor line.
+        LineNrBelow  = { link = "LineNr" },                  -- Line number for when the 'relativenumber' option is set, below the cursor line.
         CursorLineNr = { link = "CursorLine", bold = true }, -- Like LineNr when 'cursorline' is set and 'cursorlineopt' contains "number" or is "both", for the cursor line.
-        CursorLineFold = { link = "FoldColumn" }, -- Like FoldColumn when 'cursorline' is set for the cursor line.
-        CursorLineSign = { link = "SignColumn" }, -- Like SignColumn when 'cursorline' is set for the cursor line.
+        CursorLineFold = { link = "FoldColumn" },            -- Like FoldColumn when 'cursorline' is set for the cursor line.
+        CursorLineSign = { link = "SignColumn" },            -- Like SignColumn when 'cursorline' is set for the cursor line.
 
         Normal             = { fg = c.fg, bg = c.bg }, -- Normal text.
         NormalFloat        = { bg = c.secondary_bg },  -- Normal text in floating windows.
@@ -226,11 +226,11 @@ local function set_groups()
         ["@module.builtin"] = { link = "Special" }, -- built-in modules or namespaces
         ["@label"]          = { link = "Label" }, -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
 
-        ["@string"]         = { link = "String" }, -- string literals
-        ["@string.special"] = { link = "SpecialChar" }, -- other special strings (e.g. dates)
+        ["@string"]         = { link = "String" },          -- string literals
+        ["@string.special"] = { link = "SpecialChar" },     -- other special strings (e.g. dates)
         ["@string.regexp"]  = { link = "@string.special" }, -- regular expressions
         ["@string.escape"]  = { link = "@string.special" }, -- escape sequences
-        ["@string.special.path"] = { bold = true, italic = true }, -- filenames
+        ["@string.special.path"] = { bold = true, italic = true },    -- filenames
         ["@string.special.url"]  = { bold = true, underline = true }, -- URIs (e.g. hyperlinks)
         -- ["@string.documentation"]  = {}, -- string documenting code (e.g. Python docstrings)
         -- ["@string.special.symbol"] = {}, -- symbols or atoms
@@ -280,11 +280,11 @@ local function set_groups()
         ["@punctuation.special"]   = { link = "Special" }, -- special symbols (e.g. `{}` in string interpolation)
         -- ["@punctuation.bracket"]   = {}, -- brackets (e.g. `()`, `{}`, `[]`)
 
-        ["@comment"]         = { link = "Comment" }, -- line and block comments
+        ["@comment"]         = { link = "Comment" },         -- line and block comments
         ["@comment.error"]   = { link = "DiagnosticError" }, -- error  -type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
-        ["@comment.warning"] = { link = "DiagnosticWarn" }, -- warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
-        ["@comment.todo"]    = { link = "Todo" }, -- todo   -type comments (e.g. `TODO`, `WIP`)
-        ["@comment.note"]    = { link = "DiagnosticInfo" }, -- note   -type comments (e.g. `NOTE`, `INFO`, `XXX`)
+        ["@comment.warning"] = { link = "DiagnosticWarn" },  -- warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
+        ["@comment.todo"]    = { link = "Todo" },            -- todo-type comments (e.g. `TODO`, `WIP`)
+        ["@comment.note"]    = { link = "DiagnosticInfo" },  -- note-type comments (e.g. `NOTE`, `INFO`, `XXX`)
         -- ["@comment.documentation"] = {}, -- comments documenting code
 
         ["@markup.strong"] = { bold   = true }, -- bold text
@@ -299,17 +299,13 @@ local function set_groups()
         -- ["@markup.heading.4"] = {}, -- and so on
         -- ["@markup.heading.5"] = {}, -- and so forth
         -- ["@markup.heading.6"] = {}, -- six levels ought to be enough for anybody
-
         -- ["@markup.quote"] = {}, -- block quotes
         -- ["@markup.math"]  = {}, -- math environments (e.g. `$ ... $` in LaTeX)
-
         ["@markup.link"]       = { link = "Underlined" }, -- text references, footnotes, citations, etc.
         -- ["@markup.link.label"] = {}, -- link, reference descriptions
         -- ["@markup.link.url"]   = {}, -- URL-style links
-
         -- ["@markup.raw"]       = {}, -- literal or verbatim text (e.g. inline code)
         -- ["@markup.raw.block"] = {}, -- literal or verbatim text as a stand-alone block
-
         -- ["@markup.list"]           = {}, -- list markers
         -- ["@markup.list.checked"]   = {}, -- checked todo  -style list markers
         -- ["@markup.list.unchecked"] = {}, -- unchecked todo-style list markers
@@ -329,27 +325,27 @@ local function set_groups()
         -- However, when an lsp has semantic tokens, it links `lsp.type.comments` to `Comments`, which overrides
         -- Treesitter's highlights for those different types of comments. So basically, let's not do anything
         -- with this highlight.
-        ["@lsp.type.comment"]       = {}, -- Tokens that represent a comment
-        ["@lsp.type.class"]         = { link = "@type" },      -- Identifiers that declare or reference a class type
-        ["@lsp.type.decorator"]     = { link = "@attribute" }, -- Identifiers that declare or reference decorators and annotations
-        ["@lsp.type.enum"]          = { link = "@type" },      -- Identifiers that declare or reference an enumeration type
-        ["@lsp.type.enumMember"]    = { link = "@constant" },  -- Identifiers that declare or reference an enumeration property, constant, or member
-        ["@lsp.type.event"]         = { link = "@type" }, -- Identifiers that declare an event property
-        ["@lsp.type.function"]      = { link = "@function" }, -- Identifiers that declare a function
-        ["@lsp.type.interface"]     = { link = "@type" }, -- Identifiers that declare or reference an interface type
-        ["@lsp.type.keyword"]       = { link = "@keyword" }, -- Tokens that represent a language keyword
-        ["@lsp.type.macro"]         = { link = "@constant.macro" }, -- Identifiers that declare a macro
-        ["@lsp.type.method"]        = { link = "@function.method" }, -- Identifiers that declare a member function or method
-        ["@lsp.type.modifier"]      = { link = "@type.qualifier" }, -- Tokens that represent a modifier
-        ["@lsp.type.namespace"]     = { link = "@module" }, -- Identifiers that declare or reference a namespace, module, or package
-        ["@lsp.type.number"]        = { link = "@number" }, -- Tokens that represent a number literal
-        ["@lsp.type.operator"]      = { link = "@operator" }, -- Tokens that represent an operator
-        ["@lsp.type.parameter"]     = { link = "@variable.parameter" }, -- Identifiers that declare or reference a function or method parameters
-        ["@lsp.type.property"]      = { link = "@property" }, -- Identifiers that declare or reference a member property, member field, or member variable
-        ["@lsp.type.regexp"]        = { link = "@string.regexp" }, -- Tokens that represent a regular expression literal
-        ["@lsp.type.string"]        = { link = "@string" }, -- Tokens that represent a string literal
-        ["@lsp.type.struct"]        = { link = "@type" }, -- Identifiers that declare or reference a struct type
-        ["@lsp.type.type"]          = { link = "@type" }, -- Identifiers that declare or reference a type that is not covered above
+        ["@lsp.type.comment"]    = {},                               -- Tokens that represent a comment
+        ["@lsp.type.class"]      = { link = "@type" },               -- Identifiers that declare or reference a class type
+        ["@lsp.type.decorator"]  = { link = "@attribute" },          -- Identifiers that declare or reference decorators and annotations
+        ["@lsp.type.enum"]       = { link = "@type" },               -- Identifiers that declare or reference an enumeration type
+        ["@lsp.type.enumMember"] = { link = "@constant" },           -- Identifiers that declare or reference an enumeration property, constant, or member
+        ["@lsp.type.event"]      = { link = "@type" },               -- Identifiers that declare an event property
+        ["@lsp.type.function"]   = { link = "@function" },           -- Identifiers that declare a function
+        ["@lsp.type.interface"]  = { link = "@type" },               -- Identifiers that declare or reference an interface type
+        ["@lsp.type.keyword"]    = { link = "@keyword" },            -- Tokens that represent a language keyword
+        ["@lsp.type.macro"]      = { link = "@constant.macro" },     -- Identifiers that declare a macro
+        ["@lsp.type.method"]     = { link = "@function.method" },    -- Identifiers that declare a member function or method
+        ["@lsp.type.modifier"]   = { link = "@type.qualifier" },     -- Tokens that represent a modifier
+        ["@lsp.type.namespace"]  = { link = "@module" },             -- Identifiers that declare or reference a namespace, module, or package
+        ["@lsp.type.number"]     = { link = "@number" },             -- Tokens that represent a number literal
+        ["@lsp.type.operator"]   = { link = "@operator" },           -- Tokens that represent an operator
+        ["@lsp.type.parameter"]  = { link = "@variable.parameter" }, -- Identifiers that declare or reference a function or method parameters
+        ["@lsp.type.property"]   = { link = "@property" },           -- Identifiers that declare or reference a member property, member field, or member variable
+        ["@lsp.type.regexp"]     = { link = "@string.regexp" },      -- Tokens that represent a regular expression literal
+        ["@lsp.type.string"]     = { link = "@string" },             -- Tokens that represent a string literal
+        ["@lsp.type.struct"]     = { link = "@type" },               -- Identifiers that declare or reference a struct type
+        ["@lsp.type.type"]       = { link = "@type" },               -- Identifiers that declare or reference a type that is not covered above
         ["@lsp.type.typeParameter"] = { link = "@type.definition" }, -- Identifiers that declare or reference a type parameter
         ["@lsp.type.variable"]      = { link = "@variable" }, -- Identifiers that declare or reference a local or global variable
 
@@ -387,9 +383,9 @@ local function set_groups()
         -----------------------------------------------------
         -----------------------------------------------------
         DiagnosticError = { fg = c.red_800,    bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticWarn = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticInfo = { fg = c.purple_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticHint = { fg = c.blue_800,   bold = true}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticWarn  = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticInfo  = { fg = c.purple_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticHint  = { fg = c.blue_800,   bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         DiagnosticOk    = { fg = c.green_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 
         DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text.
@@ -431,7 +427,7 @@ local function set_groups()
         -- Plugins
         -----------------------------------------------------
         -----------------------------------------------------
-        SnacksPickerToggle = { bg = c.secondary_bg },
+        -- SnacksPickerToggle = { bg = c.secondary_bg },
     }
 
     -- overrides
