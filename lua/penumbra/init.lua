@@ -48,10 +48,10 @@ local function set_groups()
         EndOfBuffer = { link = "NonText" }, -- Filler lines (~) after the last line in the buffer. By default, this is highlighted like |hl-NonText|.
         Whitespace = { link = "NonText" }, -- "nbsp", "space", "tab", "multispace", "lead" and "trail" in 'listchars'.
 
-        WarningMsg   = { fg   = c.yellow_800 }, -- Warning messages.
-        ErrorMsg     = { fg   = c.red_800 },    -- Error messages.
         ModeMsg      = { link = "Normal" },     -- 'showmode' message (e.g., "  -- INSERT --").
         OkMsg      = { fg = c.green_800, bold = true },  -- Success messages.
+        WarningMsg = { fg = c.yellow_800, bold = true }, -- Warning messages.
+        ErrorMsg   = { fg = c.red_800, bold = true },    -- Error messages.
         StderrMsg    = { link = "ErrorMsg" },   -- Messages in stderr from shell commands.
         StdoutMsg    = { link = "Normal" },     -- Messages in stdout from shell commands.
         MsgArea      = { link = "Normal" },     -- Area for messages and command-line, see also 'cmdheight'.
