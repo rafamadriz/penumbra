@@ -199,113 +199,6 @@ local function set_groups()
 
         -----------------------------------------------------
         -----------------------------------------------------
-        -- Diagnostics |help diagnostic-highlights|
-        -----------------------------------------------------
-        -----------------------------------------------------
-        DiagnosticError = { fg = c.red_800,    bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticWarn = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticInfo = { fg = c.purple_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticHint = { fg = c.blue_800,   bold = true}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticOk   = { fg = c.green_800 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-
-        DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text.
-        DiagnosticVirtualTextWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual text.
-        DiagnosticVirtualTextInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" diagnostic virtual text.
-        DiagnosticVirtualTextHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" diagnostic virtual text.
-        DiagnosticVirtualTextOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" diagnostic virtual text.
-
-        DiagnosticVirtualLinesError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual lines.
-        DiagnosticVirtualLinesWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual lines.
-        DiagnosticVirtualLinesInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" diagnostic virtual lines.
-        DiagnosticVirtualLinesHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" diagnostic virtual lines.
-        DiagnosticVirtualLinesOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" diagnostic virtual lines.
-
-        DiagnosticUnderlineError = { sp = c.red_800,    italic = true, underline = true }, -- Used to underline "Error" diagnostics.
-        DiagnosticUnderlineWarn  = { sp = c.yellow_800, italic = true, underline = true }, -- Used to underline "Warn" diagnostics.
-        DiagnosticUnderlineInfo  = { sp = c.purple_800, italic = true, underline = true }, -- Used to underline "Info" diagnostics.
-        DiagnosticUnderlineHint  = { sp = c.blue_800,   italic = true, underline = true }, -- Used to underline "Hint" diagnostics.
-        DiagnosticUnderlineOk    = { sp = c.green_800,  italic = true, underline = true }, -- Used to underline "Ok" diagnostics.
-
-        DiagnosticFloatingError = { link = "DiagnosticError" }, -- Used to color "Error" diagnostic messages in diagnostics float.
-        DiagnosticFloatingWarn  = { link = "DiagnosticWarn"  }, -- Used  to color "Warn" diagnostic messages in diagnostics float.
-        DiagnosticFloatingInfo  = { link = "DiagnosticInfo"  }, -- Used to color "Info" diagnostic messages in diagnostics float.
-        DiagnosticFloatingHint  = { link = "DiagnosticHint"  }, -- Used to color "Hint" diagnostic messages in diagnostics float.
-        DiagnosticFloatingOk    = { link = "DiagnosticOk"    }, -- Used to color "Ok" diagnostic messages in diagnostics float.
-
-        DiagnosticSignError = { link = "DiagnosticError" }, -- Used for "Error" signs in sign column.
-        DiagnosticSignWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" signs in sign column.
-        DiagnosticSignInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" signs in sign column.
-        DiagnosticSignHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" signs in sign column.
-        DiagnosticSignOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" signs in sign column.
-
-        DiagnosticDeprecated = { fg = c.red_800, strikethrough = true, italic = true}, -- Used for deprecated or obsolete code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline = false })`.
-        DiagnosticUnnecessary = { fg = c.indigo_400, bold = true }, -- Used for unnecessary or unused code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline  = false })`.
-
-
-        -----------------------------------------------------
-        -----------------------------------------------------
-        -- LSP |help lsp-highlight|
-        -----------------------------------------------------
-        -----------------------------------------------------
-        LspReferenceText   = { bg = c.indigo_200 }, -- used for highlighting "text" references
-        LspReferenceRead   = { link = "LspReferenceText" },   -- used for highlighting "read" references
-        LspReferenceWrite  = { link = "LspReferenceText" },   -- used for highlighting "write" references
-        LspReferenceTarget = { link = "LspReferenceText" },   -- used for highlighting reference targets (e.g. in a hover range)
-        LspInlayHint       = { fg = c.indigo_400, italic = true},   -- used for highlighting inlay hints
-
-        LspCodeLens        = { link = "NonText" }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
-        LspCodeLensSeparator = { link = "LspCodeLens" }, -- Used to color the separator between two or more code lenses.
-
-        LspSignatureActiveParameter = { link = "Visual" }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
-
-
-        -----------------------------------------------------
-        -----------------------------------------------------
-        -- LSP Semantic |help lsp-semantic-highlight|
-        -----------------------------------------------------
-        -----------------------------------------------------
-        -- NOTE: Treesitter has highlights for different types of comments (BUG, FIX, TODO, etc).
-        -- However, when an lsp has semantic tokens, it links `lsp.type.comments` to `Comments`, which overrides
-        -- Treesitter's highlights for those different types of comments. So basically, let's not do anything
-        -- with this highlight.
-        ["@lsp.type.comment"]       = {}, -- Tokens that represent a comment
-        ["@lsp.type.class"]         = { link = "@type" },      -- Identifiers that declare or reference a class type
-        ["@lsp.type.decorator"]     = { link = "@attribute" }, -- Identifiers that declare or reference decorators and annotations
-        ["@lsp.type.enum"]          = { link = "@type" },      -- Identifiers that declare or reference an enumeration type
-        ["@lsp.type.enumMember"]    = { link = "@constant" },  -- Identifiers that declare or reference an enumeration property, constant, or member
-        ["@lsp.type.event"]         = { link = "@type" }, -- Identifiers that declare an event property
-        ["@lsp.type.function"]      = { link = "@function" }, -- Identifiers that declare a function
-        ["@lsp.type.interface"]     = { link = "@type" }, -- Identifiers that declare or reference an interface type
-        ["@lsp.type.keyword"]       = { link = "@keyword" }, -- Tokens that represent a language keyword
-        ["@lsp.type.macro"]         = { link = "@constant.macro" }, -- Identifiers that declare a macro
-        ["@lsp.type.method"]        = { link = "@function.method" }, -- Identifiers that declare a member function or method
-        ["@lsp.type.modifier"]      = { link = "@type.qualifier" }, -- Tokens that represent a modifier
-        ["@lsp.type.namespace"]     = { link = "@module" }, -- Identifiers that declare or reference a namespace, module, or package
-        ["@lsp.type.number"]        = { link = "@number" }, -- Tokens that represent a number literal
-        ["@lsp.type.operator"]      = { link = "@operator" }, -- Tokens that represent an operator
-        ["@lsp.type.parameter"]     = { link = "@variable.parameter" }, -- Identifiers that declare or reference a function or method parameters
-        ["@lsp.type.property"]      = { link = "@property" }, -- Identifiers that declare or reference a member property, member field, or member variable
-        ["@lsp.type.regexp"]        = { link = "@string.regexp" }, -- Tokens that represent a regular expression literal
-        ["@lsp.type.string"]        = { link = "@string" }, -- Tokens that represent a string literal
-        ["@lsp.type.struct"]        = { link = "@type" }, -- Identifiers that declare or reference a struct type
-        ["@lsp.type.type"]          = { link = "@type" }, -- Identifiers that declare or reference a type that is not covered above
-        ["@lsp.type.typeParameter"] = { link = "@type.definition" }, -- Identifiers that declare or reference a type parameter
-        ["@lsp.type.variable"]      = { link = "@variable" }, -- Identifiers that declare or reference a local or global variable
-
-        ["@lsp.mod.deprecated"]     = { link = "DiagnosticDeprecated" }, -- Symbols that should no longer be used
-        -- ["@lsp.mod.abstract"]       = {}, -- Types and member functions that are abstract
-        -- ["@lsp.mod.async"]          = {}, -- Functions that are marked async
-        -- ["@lsp.mod.declaration"]    = {}, -- Declarations of symbols
-        -- ["@lsp.mod.defaultLibrary"] = {}, -- Symbols that are part of the standard library
-        -- ["@lsp.mod.definition"]     = {}, -- Definitions of symbols, for example, in header files
-        -- ["@lsp.mod.documentation"]  = {}, -- Occurrences of symbols in documentation
-        -- ["@lsp.mod.modification"]   = {}, -- Variable references where the variable is assigned to
-        -- ["@lsp.mod.readonly"]       = {}, -- Readonly variables and member fields (constants)
-        -- ["@lsp.mod.static"]         = {}, -- Class members (static members)
-
-
-        -----------------------------------------------------
-        -----------------------------------------------------
         -- Treesitter |help treesitter-highlight-groups|
         -----------------------------------------------------
         -----------------------------------------------------
@@ -419,10 +312,116 @@ local function set_groups()
 
         -----------------------------------------------------
         -----------------------------------------------------
+        -- LSP Semantic |help lsp-semantic-highlight|
+        -----------------------------------------------------
+        -----------------------------------------------------
+        -- NOTE: Treesitter has highlights for different types of comments (BUG, FIX, TODO, etc).
+        -- However, when an lsp has semantic tokens, it links `lsp.type.comments` to `Comments`, which overrides
+        -- Treesitter's highlights for those different types of comments. So basically, let's not do anything
+        -- with this highlight.
+        ["@lsp.type.comment"]       = {}, -- Tokens that represent a comment
+        ["@lsp.type.class"]         = { link = "@type" },      -- Identifiers that declare or reference a class type
+        ["@lsp.type.decorator"]     = { link = "@attribute" }, -- Identifiers that declare or reference decorators and annotations
+        ["@lsp.type.enum"]          = { link = "@type" },      -- Identifiers that declare or reference an enumeration type
+        ["@lsp.type.enumMember"]    = { link = "@constant" },  -- Identifiers that declare or reference an enumeration property, constant, or member
+        ["@lsp.type.event"]         = { link = "@type" }, -- Identifiers that declare an event property
+        ["@lsp.type.function"]      = { link = "@function" }, -- Identifiers that declare a function
+        ["@lsp.type.interface"]     = { link = "@type" }, -- Identifiers that declare or reference an interface type
+        ["@lsp.type.keyword"]       = { link = "@keyword" }, -- Tokens that represent a language keyword
+        ["@lsp.type.macro"]         = { link = "@constant.macro" }, -- Identifiers that declare a macro
+        ["@lsp.type.method"]        = { link = "@function.method" }, -- Identifiers that declare a member function or method
+        ["@lsp.type.modifier"]      = { link = "@type.qualifier" }, -- Tokens that represent a modifier
+        ["@lsp.type.namespace"]     = { link = "@module" }, -- Identifiers that declare or reference a namespace, module, or package
+        ["@lsp.type.number"]        = { link = "@number" }, -- Tokens that represent a number literal
+        ["@lsp.type.operator"]      = { link = "@operator" }, -- Tokens that represent an operator
+        ["@lsp.type.parameter"]     = { link = "@variable.parameter" }, -- Identifiers that declare or reference a function or method parameters
+        ["@lsp.type.property"]      = { link = "@property" }, -- Identifiers that declare or reference a member property, member field, or member variable
+        ["@lsp.type.regexp"]        = { link = "@string.regexp" }, -- Tokens that represent a regular expression literal
+        ["@lsp.type.string"]        = { link = "@string" }, -- Tokens that represent a string literal
+        ["@lsp.type.struct"]        = { link = "@type" }, -- Identifiers that declare or reference a struct type
+        ["@lsp.type.type"]          = { link = "@type" }, -- Identifiers that declare or reference a type that is not covered above
+        ["@lsp.type.typeParameter"] = { link = "@type.definition" }, -- Identifiers that declare or reference a type parameter
+        ["@lsp.type.variable"]      = { link = "@variable" }, -- Identifiers that declare or reference a local or global variable
+
+        ["@lsp.mod.deprecated"]     = { link = "DiagnosticDeprecated" }, -- Symbols that should no longer be used
+        -- ["@lsp.mod.abstract"]       = {}, -- Types and member functions that are abstract
+        -- ["@lsp.mod.async"]          = {}, -- Functions that are marked async
+        -- ["@lsp.mod.declaration"]    = {}, -- Declarations of symbols
+        -- ["@lsp.mod.defaultLibrary"] = {}, -- Symbols that are part of the standard library
+        -- ["@lsp.mod.definition"]     = {}, -- Definitions of symbols, for example, in header files
+        -- ["@lsp.mod.documentation"]  = {}, -- Occurrences of symbols in documentation
+        -- ["@lsp.mod.modification"]   = {}, -- Variable references where the variable is assigned to
+        -- ["@lsp.mod.readonly"]       = {}, -- Readonly variables and member fields (constants)
+        -- ["@lsp.mod.static"]         = {}, -- Class members (static members)
+
+
+        -----------------------------------------------------
+        -----------------------------------------------------
+        -- LSP |help lsp-highlight|
+        -----------------------------------------------------
+        -----------------------------------------------------
+        LspReferenceText   = { bg = c.indigo_200 }, -- used for highlighting "text" references
+        LspReferenceRead   = { link = "LspReferenceText" },   -- used for highlighting "read" references
+        LspReferenceWrite  = { link = "LspReferenceText" },   -- used for highlighting "write" references
+        LspReferenceTarget = { link = "LspReferenceText" },   -- used for highlighting reference targets (e.g. in a hover range)
+        LspInlayHint       = { fg = c.indigo_400, italic = true},   -- used for highlighting inlay hints
+
+        LspCodeLens        = { link = "NonText" }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+        LspCodeLensSeparator = { link = "LspCodeLens" }, -- Used to color the separator between two or more code lenses.
+
+        LspSignatureActiveParameter = { link = "Visual" }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+
+        -----------------------------------------------------
+        -----------------------------------------------------
+        -- Diagnostics |help diagnostic-highlights|
+        -----------------------------------------------------
+        -----------------------------------------------------
+        DiagnosticError = { fg = c.red_800,    bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticWarn = { fg = c.yellow_800, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticInfo = { fg = c.purple_800,  bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticHint = { fg = c.blue_800,   bold = true}, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticOk   = { fg = c.green_800 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+
+        DiagnosticVirtualTextError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual text.
+        DiagnosticVirtualTextWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual text.
+        DiagnosticVirtualTextInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" diagnostic virtual text.
+        DiagnosticVirtualTextHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" diagnostic virtual text.
+        DiagnosticVirtualTextOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" diagnostic virtual text.
+
+        DiagnosticVirtualLinesError = { link = "DiagnosticError" }, -- Used for "Error" diagnostic virtual lines.
+        DiagnosticVirtualLinesWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" diagnostic virtual lines.
+        DiagnosticVirtualLinesInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" diagnostic virtual lines.
+        DiagnosticVirtualLinesHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" diagnostic virtual lines.
+        DiagnosticVirtualLinesOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" diagnostic virtual lines.
+
+        DiagnosticUnderlineError = { sp = c.red_800,    italic = true, underline = true }, -- Used to underline "Error" diagnostics.
+        DiagnosticUnderlineWarn  = { sp = c.yellow_800, italic = true, underline = true }, -- Used to underline "Warn" diagnostics.
+        DiagnosticUnderlineInfo  = { sp = c.purple_800, italic = true, underline = true }, -- Used to underline "Info" diagnostics.
+        DiagnosticUnderlineHint  = { sp = c.blue_800,   italic = true, underline = true }, -- Used to underline "Hint" diagnostics.
+        DiagnosticUnderlineOk    = { sp = c.green_800,  italic = true, underline = true }, -- Used to underline "Ok" diagnostics.
+
+        DiagnosticFloatingError = { link = "DiagnosticError" }, -- Used to color "Error" diagnostic messages in diagnostics float.
+        DiagnosticFloatingWarn  = { link = "DiagnosticWarn"  }, -- Used  to color "Warn" diagnostic messages in diagnostics float.
+        DiagnosticFloatingInfo  = { link = "DiagnosticInfo"  }, -- Used to color "Info" diagnostic messages in diagnostics float.
+        DiagnosticFloatingHint  = { link = "DiagnosticHint"  }, -- Used to color "Hint" diagnostic messages in diagnostics float.
+        DiagnosticFloatingOk    = { link = "DiagnosticOk"    }, -- Used to color "Ok" diagnostic messages in diagnostics float.
+
+        DiagnosticSignError = { link = "DiagnosticError" }, -- Used for "Error" signs in sign column.
+        DiagnosticSignWarn  = { link = "DiagnosticWarn"  }, -- Used for "Warn" signs in sign column.
+        DiagnosticSignInfo  = { link = "DiagnosticInfo"  }, -- Used for "Info" signs in sign column.
+        DiagnosticSignHint  = { link = "DiagnosticHint"  }, -- Used for "Hint" signs in sign column.
+        DiagnosticSignOk    = { link = "DiagnosticOk"    }, -- Used for "Ok" signs in sign column.
+
+        DiagnosticDeprecated = { fg = c.red_800, strikethrough = true, italic = true}, -- Used for deprecated or obsolete code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline = false })`.
+        DiagnosticUnnecessary = { fg = c.indigo_400, bold = true }, -- Used for unnecessary or unused code. Applied by the "underline" handler; disabled when `vim.diagnostic.config({ underline  = false })`.
+
+
+        -----------------------------------------------------
+        -----------------------------------------------------
         -- Plugins
         -----------------------------------------------------
         -----------------------------------------------------
-        SnacksPickerToggle = { bg = c.indigo_100 },
+        SnacksPickerToggle = { bg = c.secondary_bg },
     }
 
     -- overrides
