@@ -1,10 +1,19 @@
 local theme = {}
 local utils = require'penumbra.utils'
-local config = require'penumbra.config'
 -- The palette depends on vim.o.background, which can change at runtime (and
 -- Neovim re-sources the colorscheme when it does), so it is loaded lazily in
 -- colorscheme() instead of being captured here at module load time.
 local c
+
+---@class penumbra.Config
+local default_config = {
+    italics = {
+        comments = true,
+    },
+    overrides = {}
+}
+local user_config = vim.g.penumbra_config or {}
+local config = vim.tbl_deep_extend("force", default_config, user_config)
 
 local function set_terminal_colors()
     -- https://www.ditig.com/256-colors-cheat-sheet
@@ -153,7 +162,7 @@ local function set_groups()
         -- Syntax |help group-name|
         -----------------------------------------------------
         -----------------------------------------------------
-        Comment = { fg = c.yellow_900, italic = config.italics.comments or true }, -- any comment
+        Comment = { fg = c.yellow_900, italic = config.italics.comments }, -- any comment
 
         Constant  = { fg   = c.blue_900, bold   = true },  -- any constant
         String    = { fg   = c.green_900 },                -- a string constant: "this is a string"
@@ -435,13 +444,6 @@ local function set_groups()
     for group, parameters in pairs(groups) do
         vim.api.nvim_set_hl(0, group, parameters)
     end
-end
-
-function theme.setup(values)
-    setmetatable(
-        config,
-        { __index = vim.tbl_extend("force", config.defaults, values) }
-    )
 end
 
 function theme.colorscheme()
