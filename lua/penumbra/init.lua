@@ -63,7 +63,7 @@ local function set_groups()
         WinBar    = { bg = c.indigo_200, fg = c.indigo_900 }, -- Window bar of current window.
         WinBarNC  = { bg = c.indigo_100, fg = c.indigo_400 }, -- Window bar of not-current windows.
         WinSeparator = { link = "Special" },               -- Separators between window splits.
-        Folded       = { fg   = c.fg, bg = c.indigo_100 }, -- Line used for closed folds.
+        Folded       = { fg   = c.indigo_400, bg = c.indigo_100 }, -- Line used for closed folds.
         FoldColumn   = { link = "SignColumn" },            -- 'foldcolumn'
         SignColumn   = { link = "Normal" },                -- Column where |signs| are displayed.
 
