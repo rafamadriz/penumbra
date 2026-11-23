@@ -39,18 +39,6 @@ if vim.o.background == 'dark' then
         red_100 = '#2d1e1e',
         red_50 = '#1e1515',
 
-        orange_950 = '#ffede4',
-        orange_900 = '#f4d4c4',
-        orange_800 = '#f3b996',
-        orange_700 = '#eb9b5d',
-        orange_600 = '#c28356',
-        orange_500 = '#a2704f',
-        orange_400 = '#725646',
-        orange_300 = '#554136',
-        orange_200 = '#362c28',
-        orange_100 = '#27211e',
-        orange_50 = '#1a1715',
-
         yellow_950 = '#f6f1d6',
         yellow_900 = '#faf1bf',
         yellow_800 = '#ecde79',
