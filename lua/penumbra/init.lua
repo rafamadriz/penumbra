@@ -184,10 +184,10 @@ local function set_groups()
         Structure    = { link = "Type" }, -- struct, union, enum, etc.
         Typedef      = { link = "Type" }, -- a typedef
 
-        Delimiter         = { fg = c.fg },         -- character that needs attention
         Special     = { fg = c.indigo_700, bold = true }, -- any special symbol
         SpecialChar = { link = "Special" }, -- special character in a constant
         Tag         = { link = "Special" }, -- you can use CTRL-] on this
+        Delimiter   = { fg = c.indigo_900, bold = true }, -- character that needs attention
         SpecialComment = { link = "Special" }, -- special things inside a comment
         Debug          = { link = "Special" }, -- debugging statements
 
