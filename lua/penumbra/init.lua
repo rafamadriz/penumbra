@@ -9,7 +9,10 @@ local c
 local default_config = {
     terminal_colors = true,
     italics = {
-        comments = true,
+        comments     = true,
+        conditionals = false,
+        keywords     = false,
+        strings      = false,
     },
     overrides = {}
 }
@@ -165,8 +168,8 @@ local function set_groups()
         -----------------------------------------------------
         Comment = { fg = c.yellow_900, italic = config.italics.comments }, -- any comment
 
-        Constant  = { fg   = c.blue_900, bold   = true },  -- any constant
-        String    = { fg   = c.green_900 },                -- a string constant: "this is a string"
+        Constant  = { fg = c.blue_900, bold = true },  -- any constant
+        String    = { fg = c.green_900, italic = config.italics.strings }, -- a string constant: "this is a string"
         Character = { link = "Constant" },                 -- a character constant: 'c', '\n'
         Number    = { fg   = c.red_800,  bold = true },  -- a number constant: 234, 0xff
         Boolean   = { fg   = c.blue_900, bold = true },  -- a boolean constant: TRUE, false
@@ -175,12 +178,12 @@ local function set_groups()
         Identifier = { fg = c.indigo_900 }, -- any variable name
         Function   = { fg = c.indigo_800 }, -- function name (also: methods for classes)
 
-        Statement   = { fg   = c.indigo_900, bold = true }, -- any statement
-        Conditional = { link = "Statement" },               -- if, then, else, endif, switch, etc.
+        Statement   = { fg = c.indigo_900, bold = true }, -- any statement
+        Conditional = { fg = c.indigo_900, bold = true, italic = config.italics.conditionals }, -- if, then, else, endif, switch, etc.
         Repeat      = { link = "Statement" },               -- for, do, while, etc.
         Label       = { link = "Statement" },               -- case, default, etc.
         Operator    = { fg = c.indigo_900 }, -- "sizeof", "+", "*", etc.
-        Keyword     = { link = "Statement" },               -- any other keyword
+        Keyword     = { fg = c.indigo_900, bold = true, italic = config.italics.keywords },               -- any other keyword
         Exception   = { link = "Statement" },               -- try, catch, throw
 
         PreProc      = { link = "Statement" }, -- generic Preprocessor
@@ -272,7 +275,7 @@ local function set_groups()
         -- ["@keyword.debug"]     = {}, -- keywords related to debugging
         -- ["@keyword.exception"] = {}, -- keywords related to exceptions (e.g. `throw`, `catch`)
         -- ["@keyword.directive"]   = {}, -- various preprocessor directives and shebangs
-        -- ["@keyword.conditional"] = {}, -- keywords related to conditionals (e.g. `if`, `else`)
+        ["@keyword.conditional"] = { link = "Conditional" }, -- keywords related to conditionals (e.g. `if`, `else`)
         -- ["@keyword.conditional.ternary"] = {}, -- ternary operator (e.g. `?`, `:`)
         -- ["@keyword.directive.define"]    = {}, -- preprocessor definition directives
 
