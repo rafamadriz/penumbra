@@ -55,10 +55,10 @@ local function set_groups()
         StdoutMsg    = { link = "Normal" },     -- Messages in stdout from shell commands.
         ModeMsg      = { fg = c.green_900 },    -- 'showmode' message (e.g., "  -- INSERT --").
         MsgArea      = { link = "Normal" },     -- Area for messages and command-line, see also 'cmdheight'.
-        Title        = { fg   = c.indigo_700 }, -- Titles for output from ":set all", ":autocmd" etc.
         MsgSeparator = { link = "StatusLine" }, -- Separator for scrolled messages |msgsep|.
         MoreMsg      = { fg = c.blue_800 },     -- |more-prompt|
         Question     = { fg = c.blue_800 },     -- |hit-enter| prompt and yes/no questions.
+        Title        = { fg = c.indigo_700 },   -- Titles for output from ":set all", ":autocmd" etc.
 
         WinBar    = { bg = c.indigo_200, fg = c.indigo_900 }, -- Window bar of current window.
         WinBarNC  = { bg = c.indigo_100, fg = c.indigo_400 }, -- Window bar of not-current windows.
@@ -67,9 +67,9 @@ local function set_groups()
         FoldColumn   = { link = "SignColumn" },            -- 'foldcolumn'
         SignColumn   = { link = "Normal" },                -- Column where |signs| are displayed.
 
-        Search     = { bg   = c.indigo_300 },                         -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-        IncSearch  = { bg   = c.indigo_900, fg = c.bg, bold = true }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c".
-        CurSearch    = { link = "IncSearch" },                        -- Current match for the last search pattern (see 'hlsearch').
+        Search     = { bg = c.indigo_300 },                         -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+        IncSearch  = { bg = c.indigo_900, fg = c.bg, bold = true }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c".
+        CurSearch  = { link = "IncSearch" },                          -- Current match for the last search pattern (see 'hlsearch').
         MatchParen = { fg   = c.bg, bg = c.purple_800, bold = true }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         Substitute = { link = "IncSearch" },                          -- |:substitute| replacement text highlighting.
 
@@ -157,9 +157,9 @@ local function set_groups()
 
         Constant  = { fg   = c.blue_900, bold   = true },  -- any constant
         String    = { fg   = c.green_900 },                -- a string constant: "this is a string"
-        Boolean   = { fg   = c.blue_900, bold   = true },  -- a boolean constant: TRUE, false
         Character = { link = "Constant" },                 -- a character constant: 'c', '\n'
         Number    = { fg   = c.red_800,  bold = true },  -- a number constant: 234, 0xff
+        Boolean   = { fg   = c.blue_900, bold = true },  -- a boolean constant: TRUE, false
         Float     = { link = "Number" },                   -- a floating point constant: 2.3e10
 
         Identifier = { fg = c.indigo_900 }, -- any variable name
