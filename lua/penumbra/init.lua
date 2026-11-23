@@ -7,6 +7,7 @@ local c
 
 ---@class penumbra.Config
 local default_config = {
+    terminal_colors = true,
     italics = {
         comments = true,
     },
@@ -460,7 +461,9 @@ function theme.colorscheme()
     package.loaded["penumbra.colorscheme"] = nil
     c = require"penumbra.colorscheme"
 
-    set_terminal_colors()
+    if config.terminal_colors then
+        set_terminal_colors()
+    end
     set_groups()
 end
 
