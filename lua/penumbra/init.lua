@@ -41,7 +41,7 @@ local function set_groups()
         CursorIM     = { link = "Cursor" },                      -- Like Cursor, but used when in IME mode. *CursorIM*
         TermCursor   = { link = "Cursor" },                      -- Cursor in a focused terminal.
         CursorColumn = { link = "CursorLine" },                  -- Screen-column at the cursor, when 'cursorcolumn' is set.
-        CursorLine   = { bg   = utils.shade(c.fg, 0.08, c.bg) }, -- Screen-line at the cursor, when 'cursorline' is set.
+        CursorLine   = { bg   = utils.shade(c.fg, 0.1, c.bg) },  -- Screen-line at the cursor, when 'cursorline' is set.
         Directory    = { fg   = c.indigo_800 },                  -- Directory names (and other special names in listings).
 
         NonText = { fg = c.indigo_400, }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
