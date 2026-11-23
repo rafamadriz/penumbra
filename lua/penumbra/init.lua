@@ -157,15 +157,15 @@ local function set_groups()
 
         Constant  = { fg   = c.blue_900, bold   = true },  -- any constant
         String    = { fg   = c.green_900 },                -- a string constant: "this is a string"
-        Number    = { fg   = c.orange_800, bold = true },  -- a number constant: 234, 0xff
         Boolean   = { fg   = c.blue_900, bold   = true },  -- a boolean constant: TRUE, false
         Character = { link = "Constant" },                 -- a character constant: 'c', '\n'
+        Number    = { fg   = c.red_800,  bold = true },  -- a number constant: 234, 0xff
         Float     = { link = "Number" },                   -- a floating point constant: 2.3e10
 
         Identifier = { fg = c.indigo_900 }, -- any variable name
         Function   = { fg = c.indigo_800 }, -- function name (also: methods for classes)
 
-        Statement   = { fg   = c.purple_900, bold = true }, -- any statement
+        Statement   = { fg   = c.indigo_900, bold = true }, -- any statement
         Conditional = { link = "Statement" },               -- if, then, else, endif, switch, etc.
         Repeat      = { link = "Statement" },               -- for, do, while, etc.
         Label       = { link = "Statement" },               -- case, default, etc.
