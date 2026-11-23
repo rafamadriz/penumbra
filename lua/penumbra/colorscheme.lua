@@ -11,9 +11,9 @@ if vim.o.background == 'dark' then
         indigo_500 = '#6e74c6',
         indigo_400 = '#515793',
         indigo_300 = '#3d426a',
-        indigo_200 = '#2b2d3f',
+        indigo_200 = '#2b2c40',
         indigo_100 = '#20212d',
-        indigo_50  = '#16171d',
+        indigo_50  = '#16171f',
 
         purple_950 = '#faecfd',
         purple_900 = '#edd1f3',
@@ -123,5 +123,6 @@ end
 
 M.fg = M.indigo_950
 M.bg = M.indigo_50
+M.secondary_bg = M.indigo_100
 
 return M
