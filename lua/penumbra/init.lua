@@ -70,7 +70,7 @@ local function set_groups()
         MsgSeparator = { link = "StatusLine" }, -- Separator for scrolled messages |msgsep|.
         MoreMsg      = { fg = c.blue_800 },     -- |more-prompt|
         Question     = { fg = c.blue_800 },     -- |hit-enter| prompt and yes/no questions.
-        Title        = { fg = c.indigo_700 },   -- Titles for output from ":set all", ":autocmd" etc.
+        Title        = { fg = c.indigo_600, bold = true },   -- Titles for output from ":set all", ":autocmd" etc.
 
         WinBar    = { bg = c.indigo_200, fg = c.indigo_900 }, -- Window bar of current window.
         WinBarNC  = { bg = c.indigo_100, fg = c.indigo_400 }, -- Window bar of not-current windows.
@@ -94,10 +94,10 @@ local function set_groups()
 
         Normal             = { fg = c.fg, bg = c.bg }, -- Normal text.
         NormalFloat        = { bg = c.indigo_200 },  -- Normal text in floating windows.
-        FloatBorder        = { link = "NormalFloat" }, -- Border of floating windows.
+        FloatBorder        = { bg = c.indigo_200, fg = c.indigo_600 }, -- Border of floating windows.
         FloatShadow        = { bg   = c.indigo_300 },  -- Blended areas when border is "shadow".
         FloatShadowThrough = { link = "FloatShadow" }, -- Shadow corners when border is "shadow".
-        FloatTitle         = { link = "Title" },       -- Title of floating windows.
+        FloatTitle         = { fg = c.indigo_600, bg = c.indigo_200, bold = true },       -- Title of floating windows.
         FloatFooter        = { link = "FloatTitle" },  -- Footer of floating windows.
         NormalNC           = { link = "Normal" },      -- Normal text in non-current windows.
         Visual             = { bg   = utils.shade(c.indigo_900, 0.15, c.bg) }, -- Visual mode selection.
@@ -113,7 +113,7 @@ local function set_groups()
         PmenuThumb    = { bg   = c.indigo_700 },  -- Popup menu: Thumb of the scrollbar.
         PmenuMatch    = { fg   = c.indigo_800, bold = true }, -- Popup menu: Matched text in normal item.  Combined with |hl-Pmenu|.
         PmenuMatchSel = {}, -- Popup menu: Matched text in selected item.  Combined with |hl-PmenuMatch| and |hl-PmenuSel|.
-        PmenuBorder        = { link = "Pmenu" },             -- Popup menu: border of popup menu.
+        PmenuBorder        = { link = "FloatBorder" },             -- Popup menu: border of popup menu.
         PmenuShadow        = { link = "FloatShadow"},        -- Popup menu: blended areas when 'pumborder' is "shadow".
         PmenuShadowThrough = { link = "FloatShadowThrough"}, -- Popup menu: shadow corners when 'pumborder' is "shadow".
         ComplMatchIns      = {}, -- Matched text of the currently inserted completion.
