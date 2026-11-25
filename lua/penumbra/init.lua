@@ -431,6 +431,7 @@ local function set_groups()
         -- Plugins
         -----------------------------------------------------
         -----------------------------------------------------
+        MiniClueDescGroup = { link = "DiagnosticInfo" }
     }
 
     -- overrides
