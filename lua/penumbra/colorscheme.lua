@@ -9,7 +9,7 @@ M.dark = {
     indigo_500 = "#6e74c6",
     indigo_400 = "#515793",
     indigo_300 = "#3d426a",
-    indigo_200 = "#2b2c40",
+    indigo_200 = "#222235",
     indigo_100 = "#20212d",
     indigo_50  = "#16171f",
 
