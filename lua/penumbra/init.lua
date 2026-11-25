@@ -7,6 +7,7 @@ local c
 
 local default_config = {
     terminal_colors = true,
+    dim_inactive = true,
     italics = {
         comments     = true,
         conditionals = false,
@@ -76,8 +77,8 @@ local function set_groups()
         WinBarNC  = { bg = c.indigo_100, fg = c.indigo_400 }, -- Window bar of not-current windows.
         WinSeparator = { link = "Special" },               -- Separators between window splits.
         Folded       = { fg   = c.indigo_400, bg = c.indigo_50 }, -- Line used for closed folds.
-        FoldColumn   = { link = "SignColumn" },            -- 'foldcolumn'
-        SignColumn   = { link = "Normal" },                -- Column where |signs| are displayed.
+        FoldColumn   = { link = "SignColumn" }, -- 'foldcolumn'
+        SignColumn   = { link = "Normal" }, -- Column where |signs| are displayed.
 
         Search     = { bg = c.indigo_300 },                           -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
         IncSearch  = { bg = c.indigo_900, fg = c.bg, bold = true },   -- 'incsearch' highlighting; also used for the text replaced with ":s///c".
@@ -139,6 +140,10 @@ local function set_groups()
         TabLine          = { link = "TabLineFill"  }, -- Tabpages line, not active tabpage label.
         TabLineFill      = { link = "StatusLineNC" }, -- Tabpages line, where there are no labels.
         TabLineSel       = { fg = c.fg, bg = c.indigo_300, bold = true, italic = true}, -- Tabpages line, active tabpage label.
+
+        -- https://oklch.com
+        ActiveWindow   = { bg = c.indigo_100 },
+        InactiveWindow = { fg = "#cecded", bg = "#191a26" },
 
 
         -----------------------------------------------------
@@ -455,6 +460,29 @@ local function set_groups()
     end
 end
 
+local function set_inactive_window_dim()
+    local group = vim.api.nvim_create_augroup("DimInactiveWindows", { clear = true })
+    local aucmd = vim.api.nvim_create_autocmd
+
+    aucmd("WinEnter", {
+        group = group,
+        desc = "Highlight active window",
+        callback = function()
+            vim.opt_local.winhighlight =
+            "Normal:ActiveWindow,NormalNC:InactiveWindow,SignColumn:ActiveWindow"
+        end,
+    })
+
+    aucmd("WinLeave", {
+        group = group,
+        desc = "Dim inactive window",
+        callback = function()
+            vim.opt_local.winhighlight =
+            "Normal:ActiveWindow,NormalNC:InactiveWindow,SignColumn:InactiveWindow"
+        end,
+    })
+end
+
 function theme.colorscheme()
     vim.api.nvim_command "hi clear"
     if vim.fn.exists "syntax_on" then
@@ -472,6 +500,7 @@ function theme.colorscheme()
         set_terminal_colors()
     end
 
+    set_inactive_window_dim()
     set_groups()
 end
 
