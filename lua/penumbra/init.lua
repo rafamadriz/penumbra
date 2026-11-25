@@ -117,7 +117,7 @@ local function set_groups()
         PmenuShadow        = { link = "FloatShadow"},        -- Popup menu: blended areas when 'pumborder' is "shadow".
         PmenuShadowThrough = { link = "FloatShadowThrough"}, -- Popup menu: shadow corners when 'pumborder' is "shadow".
         ComplMatchIns      = {}, -- Matched text of the currently inserted completion.
-        PreInsert          = { link = "Added" },    -- Text inserted when "preinsert" is in 'completeopt'.
+        PreInsert          = { link = "NonText" },    -- Text inserted when "preinsert" is in 'completeopt'.
         ComplHint          = { link = "NonText" },  -- Virtual text of the currently selected completion.
         ComplHintMore      = { link = "MoreMsg" },  -- The additional information of the virtual text.
         WildMenu           = { link = "PmenuSel" }, -- Current match in 'wildmenu' completion.
