@@ -431,7 +431,15 @@ local function set_groups()
         -- Plugins
         -----------------------------------------------------
         -----------------------------------------------------
-        MiniClueDescGroup = { link = "DiagnosticInfo" }
+        SnacksPickerToggle = { fg = c.purple_800, bg = c.indigo_200, bold = true },
+
+        MiniClueDescGroup = { link = "DiagnosticInfo" },
+        MiniStatuslineModeNormal  = { fg = c.bg, bg = c.indigo_800, },
+        MiniStatuslineModeVisual  = { fg = c.bg, bg = c.purple_800 },
+        MiniStatuslineModeReplace = { fg = c.bg, bg = c.red_800 },
+        MiniStatuslineModeCommand = { fg = c.fg, bg = c.indigo_300 },
+        MiniStatuslineModeOther   = { link = "StatusLineTerm" },
+        MiniStatuslineFilename    = { bg = c.indigo_50 },
     }
 
     -- overrides
