@@ -5,9 +5,7 @@ local utils = require'penumbra.utils'
 -- colorscheme() instead of being captured here at module load time.
 local c
 
----@class penumbra.Config
 local default_config = {
-    flavor = "auto", -- auto, penumbra, penumbra-soft, penumbra-light
     terminal_colors = true,
     italics = {
         comments     = true,
@@ -49,7 +47,7 @@ local function set_groups()
         -----------------------------------------------------
         -----------------------------------------------------
         ColorColumn  = { link = "CursorLine" },                  -- Used for the columns set with 'colorcolumn'.
-        Conceal      = { fg   = c.indigo_200 },                  -- Placeholder characters substituted for concealed
+        Conceal      = { link = "NonText" },                  -- Placeholder characters substituted for concealed
         Cursor       = { fg   = c.bg, bg = c.fg },               -- Character under the cursor.
         lCursor      = { link = "Cursor" },                      -- Character under the cursor when |language-mapping|
         CursorIM     = { link = "Cursor" },                      -- Like Cursor, but used when in IME mode. *CursorIM*
@@ -58,9 +56,9 @@ local function set_groups()
         CursorLine   = { bg   = utils.shade(c.fg, 0.1, c.bg) },  -- Screen-line at the cursor, when 'cursorline' is set.
         Directory    = { fg   = c.indigo_800 },                  -- Directory names (and other special names in listings).
 
-        NonText = { fg = c.indigo_400, }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        NonText = { fg = c.indigo_400 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
         EndOfBuffer = { link = "NonText" }, -- Filler lines (~) after the last line in the buffer. By default, this is highlighted like |hl-NonText|.
-        Whitespace = { link = "NonText" }, -- "nbsp", "space", "tab", "multispace", "lead" and "trail" in 'listchars'.
+        Whitespace  = { link = "NonText" }, -- "nbsp", "space", "tab", "multispace", "lead" and "trail" in 'listchars'.
 
         OkMsg      = { fg = c.green_800, bold = true },  -- Success messages.
         WarningMsg = { fg = c.yellow_800, bold = true }, -- Warning messages.
@@ -95,7 +93,7 @@ local function set_groups()
         CursorLineSign = { link = "SignColumn" },            -- Like SignColumn when 'cursorline' is set for the cursor line.
 
         Normal             = { fg = c.fg, bg = c.bg }, -- Normal text.
-        NormalFloat        = { bg = c.secondary_bg },  -- Normal text in floating windows.
+        NormalFloat        = { bg = c.indigo_200 },  -- Normal text in floating windows.
         FloatBorder        = { link = "NormalFloat" }, -- Border of floating windows.
         FloatShadow        = { bg   = c.indigo_300 },  -- Blended areas when border is "shadow".
         FloatShadowThrough = { link = "FloatShadow" }, -- Shadow corners when border is "shadow".
@@ -206,6 +204,8 @@ local function set_groups()
         Debug          = { link = "Special" }, -- debugging statements
 
         Underlined = { underline = true }, -- text that stands out, HTML links
+        Bold       = { bold      = true },
+        Italic     = { italic    = true },
         Ignore     = { fg = c.bg }, -- left blank, hidden  |hl-Ignore|
         Error      = { fg = c.red_800, bg = c.red_100, bold = true }, -- any erroneous construct
         Todo       = { fg = c.blue_800, bold = true }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
@@ -431,7 +431,6 @@ local function set_groups()
         -- Plugins
         -----------------------------------------------------
         -----------------------------------------------------
-        -- SnacksPickerToggle = { bg = c.secondary_bg },
     }
 
     -- overrides
@@ -456,20 +455,9 @@ function theme.colorscheme()
     vim.o.termguicolors = true
     vim.g.colors_name = "penumbra"
 
-    if config.flavor == "penumbra-light" then
-        vim.o.background = "light"
-    elseif config.flavor == "penumbra" then
-        vim.o.background = "dark"
-    end
-
     -- Drop the cached palette so it is rebuilt for the current 'background'.
     package.loaded["penumbra.colorscheme"] = nil
-    c = require"penumbra.colorscheme"
-
-    if config.flavor == "soft" then
-        c.bg = c.indigo_100
-        c.secondary_bg = c.indigo_50
-    end
+    c = require"penumbra.colorscheme"[vim.o.background]
 
     if config.terminal_colors then
         set_terminal_colors()
