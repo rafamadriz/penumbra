@@ -56,7 +56,7 @@ local function set_groups()
         CursorLine   = { bg   = utils.shade(c.fg, 0.1, c.bg) },  -- Screen-line at the cursor, when 'cursorline' is set.
         Directory    = { fg   = c.indigo_800 },                  -- Directory names (and other special names in listings).
 
-        NonText = { fg = c.indigo_400 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        NonText = { fg = utils.shade(c.indigo_800, 0.6, c.bg) }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
         EndOfBuffer = { link = "NonText" }, -- Filler lines (~) after the last line in the buffer. By default, this is highlighted like |hl-NonText|.
         Whitespace  = { link = "NonText" }, -- "nbsp", "space", "tab", "multispace", "lead" and "trail" in 'listchars'.
 
