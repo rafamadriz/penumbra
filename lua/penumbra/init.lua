@@ -1,5 +1,5 @@
 local theme = {}
-local utils = require'penumbra.utils'
+local utils = require("penumbra.utils")
 -- The palette depends on vim.o.background, which can change at runtime (and
 -- Neovim re-sources the colorscheme when it does), so it is loaded lazily in
 -- colorscheme() instead of being captured here at module load time.
@@ -93,15 +93,15 @@ local function set_groups()
         CursorLineSign = { link = "SignColumn" },            -- Like SignColumn when 'cursorline' is set for the cursor line.
 
         Normal             = { fg = c.fg, bg = c.bg }, -- Normal text.
-        NormalFloat        = { bg = c.indigo_200 },  -- Normal text in floating windows.
+        NormalFloat        = { bg = c.indigo_200 },    -- Normal text in floating windows.
         FloatBorder        = { bg = c.indigo_200, fg = c.indigo_600 }, -- Border of floating windows.
         FloatShadow        = { bg   = c.indigo_300 },  -- Blended areas when border is "shadow".
         FloatShadowThrough = { link = "FloatShadow" }, -- Shadow corners when border is "shadow".
-        FloatTitle         = { fg = c.indigo_600, bg = c.indigo_200, bold = true },       -- Title of floating windows.
+        FloatTitle         = { fg = c.indigo_600, bg = c.indigo_200, bold = true }, -- Title of floating windows.
         FloatFooter        = { link = "FloatTitle" },  -- Footer of floating windows.
         NormalNC           = { link = "Normal" },      -- Normal text in non-current windows.
         Visual             = { bg   = utils.shade(c.indigo_900, 0.15, c.bg) }, -- Visual mode selection.
-        VisualNOS          = { link = "Visual" },                             -- Visual mode selection when vim is "Not Owning the Selection".
+        VisualNOS          = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
 
         Pmenu         = { link = "NormalFloat" }, -- Popup menu: Normal item.
         PmenuSel      = { bg   = c.indigo_300 },  -- Popup menu: Selected item. Combined with |hl-Pmenu|.
@@ -113,7 +113,7 @@ local function set_groups()
         PmenuThumb    = { bg   = c.indigo_700 },  -- Popup menu: Thumb of the scrollbar.
         PmenuMatch    = { fg   = c.indigo_800, bold = true }, -- Popup menu: Matched text in normal item.  Combined with |hl-Pmenu|.
         PmenuMatchSel = {}, -- Popup menu: Matched text in selected item.  Combined with |hl-PmenuMatch| and |hl-PmenuSel|.
-        PmenuBorder        = { link = "FloatBorder" },             -- Popup menu: border of popup menu.
+        PmenuBorder        = { link = "FloatBorder" },       -- Popup menu: border of popup menu.
         PmenuShadow        = { link = "FloatShadow"},        -- Popup menu: blended areas when 'pumborder' is "shadow".
         PmenuShadowThrough = { link = "FloatShadowThrough"}, -- Popup menu: shadow corners when 'pumborder' is "shadow".
         ComplMatchIns      = {}, -- Matched text of the currently inserted completion.
@@ -123,9 +123,9 @@ local function set_groups()
         WildMenu           = { link = "PmenuSel" }, -- Current match in 'wildmenu' completion.
 
         QuickFixLine         = { bg   = utils.shade(c.indigo_300, 0.5, c.bg) }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-        SnippetTabstop       = { link = "Visual" },         -- Tabstops in snippets. |vim.snippet|
+        SnippetTabstop       = { link = "Visual" },  -- Tabstops in snippets. |vim.snippet|
+        SpecialKey           = { link = "Special" }, -- Unprintable characters: Text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
         SnippetTabstopActive = { link = "SnippetTabstop" }, -- The currently active tabstop. |vim.snippet|
-        SpecialKey           = { link = "Special" },     -- Unprintable characters: Text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 
         SpellBad   = { undercurl = true, sp = c.red_800 },    -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
         SpellCap   = { undercurl = true, sp = c.yellow_900 }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -458,7 +458,7 @@ function theme.colorscheme()
 
     -- Drop the cached palette so it is rebuilt for the current 'background'.
     package.loaded["penumbra.colorscheme"] = nil
-    c = require"penumbra.colorscheme"[vim.o.background]
+    c = require("penumbra.colorscheme")[vim.o.background]
 
     if config.terminal_colors then
         set_terminal_colors()
