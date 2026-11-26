@@ -375,11 +375,11 @@ local function set_groups()
         -- LSP |help lsp-highlight|
         -----------------------------------------------------
         -----------------------------------------------------
-        LspReferenceText   = { bg = c.indigo_200 }, -- used for highlighting "text" references
+        LspReferenceText   = { link = "Visual" }, -- used for highlighting "text" references
         LspReferenceRead   = { link = "LspReferenceText" },   -- used for highlighting "read" references
         LspReferenceWrite  = { link = "LspReferenceText" },   -- used for highlighting "write" references
         LspReferenceTarget = { link = "LspReferenceText" },   -- used for highlighting reference targets (e.g. in a hover range)
-        LspInlayHint       = { fg = c.indigo_400, italic = true},   -- used for highlighting inlay hints
+        LspInlayHint       = { link = "NonText" },   -- used for highlighting inlay hints
 
         LspCodeLens        = { link = "NonText" }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
         LspCodeLensSeparator = { link = "LspCodeLens" }, -- Used to color the separator between two or more code lenses.
