@@ -500,7 +500,9 @@ function theme.colorscheme()
         set_terminal_colors()
     end
 
-    set_inactive_window_dim()
+    if config.dim_inactive then
+        set_inactive_window_dim()
+    end
     set_groups()
 end
 
