@@ -1,0 +1,24 @@
+# This file was automatically generated on Fri 27 Nov 2026 09:34:39 AM -03
+
+palette = 0=#d0cff0
+palette = 1=#991b1b
+palette = 2=#14532d
+palette = 3=#713f12
+palette = 4=#47318c
+palette = 5=#6b21a8
+palette = 6=#1b4170
+palette = 7=#442790
+palette = 8=#a6a8e8
+palette = 9=#f87171
+palette = 10=#166534
+palette = 11=#ca8a04
+palette = 12=#6042bb
+palette = 13=#6b21a8
+palette = 14=#194c85
+palette = 15=#20212d
+cursor-text = #d0cff0
+selection-background = #442790
+selection-foreground = #d0cff0
+background = #d0cff0
+foreground = #20212d
+cursor-color = #442790
