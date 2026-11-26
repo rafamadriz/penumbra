@@ -1,0 +1,196 @@
+#!/usr/bin/env -S nvim --headless -u NONE -l
+-- vim: filetype=lua
+
+local c = require("../penumbra/colorscheme")
+local fmt = string.format
+local joinpath = vim.fs.joinpath
+
+local palette = {}
+for mode, color in pairs(c) do
+    palette[mode] = {
+        palette_0 = color.bg,
+        palette_1 = color.red_800,
+        palette_2 = color.green_900,
+        palette_3 = color.yellow_900,
+        palette_4 = color.indigo_800,
+        palette_5 = color.purple_800,
+        palette_6 = color.blue_900,
+        palette_7 = color.indigo_900,
+
+        palette_8  = color.indigo_300,
+        palette_9  = color.red_400,
+        palette_10 = color.green_800,
+        palette_11 = color.yellow_600,
+        palette_12 = color.indigo_700,
+        palette_13 = color.purple_800,
+        palette_14 = color.blue_800,
+        palette_15 = color.fg,
+    }
+end
+
+local function get_extras_path()
+    local rel_script_path = debug.getinfo(1, "S").short_src
+    return vim.fs.abspath(vim.fs.dirname(rel_script_path))
+end
+
+local function write_file(config, path)
+    local file, err = io.open(path, "w")
+    if not file then
+        error(fmt("Could not create file.\n[ERROR]: %s\n", err))
+    end
+
+    local ok, err = file:write(config)
+    if not ok then
+        file:close() -- attempt to close file.
+        error(fmt("Could not write file.\n[ERROR]: %s\n", err))
+    end
+    local ok, err = file:close()
+    if not ok then
+        error(fmt("Could not close file.\n[ERROR]: %s\n", err))
+    end
+end
+
+local targets = {}
+
+targets.ghostty = {}
+targets.ghostty.config = function(palette)
+    local string_builder = {}
+    for p, color in pairs(palette) do
+        for w, number in p:gmatch("(palette)_(%d+)") do
+            local line = fmt("%s = %s=%s", w, number, color)
+            table.insert(string_builder, line)
+        end
+    end
+
+    table.sort(string_builder, function(a, b)
+        local idx_a, _ = a:sub(11, 12):gsub("=", "")
+        local idx_b, _ = b:sub(11, 12):gsub("=", "")
+        if idx_a and idx_b then
+            return tonumber(idx_a) < tonumber(idx_b)
+        end
+    end)
+
+    table.insert(string_builder, 1, fmt("# This file was automatically generated on %s\n", os.date()))
+
+    local ghostty_opts = {
+        background               = palette.palette_0,
+        foreground               = palette.palette_15,
+        ["cursor-color"]         = palette.palette_7,
+        ["cursor-text"]          = palette.palette_0,
+        ["selection-background"] = palette.palette_7,
+        ["selection-foreground"] = palette.palette_0,
+    }
+    for opt, color in pairs(ghostty_opts) do
+        table.insert(string_builder, fmt("%s = %s", opt, color))
+    end
+
+    return table.concat(string_builder, "\n")
+end
+
+targets.ghostty.generate = function()
+    local light = targets.ghostty.config(palette.light)
+    local dark  = targets.ghostty.config(palette.dark)
+    local light_path = joinpath(get_extras_path(), "ghostty", "penumbra-light")
+    local dark_path  = joinpath(get_extras_path(), "ghostty", "penumbra")
+    write_file(light, light_path)
+    print(fmt("[INFO]: File was created: %s\n", light_path))
+    write_file(dark, dark_path)
+    print(fmt("[INFO]: File was created: %s\n", dark_path))
+end
+
+targets.ghostty.install = function()
+    local xdg_config = os.getenv("XDG_CONFIG_HOME")
+    if not xdg_config or xdg_config == "" then
+        xdg_config = joinpath(os.getenv("HOME"), ".config", "ghostty")
+    end
+    local ghostty_root = joinpath(get_extras_path(), "ghostty")
+    local ghostty_new_root = joinpath(xdg_config, "ghostty", "themes")
+
+    local light_path = joinpath(ghostty_root, "penumbra-light")
+    local light_new_path = joinpath(ghostty_new_root, "penumbra-light")
+
+    local dark_path = joinpath(ghostty_root, "penumbra")
+    local dark_new_path = joinpath(ghostty_new_root, "penumbra")
+
+    local ok, err = vim.uv.fs_copyfile(light_path, light_new_path)
+    if not ok then
+        error(fmt("[ERROR]: %s\n", err))
+    end
+    print("[INFO]: file copied succesfully\n")
+    print(fmt("%s -> %s\n", light_path, light_new_path))
+
+    local ok, err = vim.uv.fs_copyfile(dark_path, dark_new_path)
+    if not ok then
+        error(fmt("[ERROR]: %s\n", err))
+    end
+    print("[INFO]: file copied succesfully\n")
+    print(fmt("%s -> %s\n", dark_path, dark_new_path))
+end
+
+local function usage()
+    local help = [[
+    USAGE:
+        penumbra <subcommand> <target>
+
+    SUBCOMMANDS:
+        generate        Generate the config files. (alias: gen)
+        install         Copy the generated config files to their correct location,
+                        will overwrite existing files of same name. (alias: i)
+
+    TARGETS:
+        ghostty         Ghostty config files.
+        all             Config files for all targets.
+        ]]
+    print(help)
+    return
+end
+
+-- https://devforum.roblox.com/t/switch-case-in-lua/1758606/3
+local function switch(value)
+    return function(cases)
+        local case = cases[value] or cases.default
+        if case then
+            return case(value)
+        else
+            error("Unhandled case: " .. tostring(value))
+        end
+    end
+end
+
+local function generate(config)
+    switch(config) {
+        ["ghostty"] = targets.ghostty.generate,
+        ["all"] = function()
+            for target, _ in pairs(targets) do
+                targets[target].generate()
+            end
+        end,
+        default = usage
+    }
+end
+
+local function install(config)
+    switch(config) {
+        ["ghostty"] = targets.ghostty.install,
+        ["all"] = function()
+            for target, _ in pairs(targets) do
+                targets[target].install()
+            end
+        end,
+        default = usage
+    }
+end
+
+local function main(args)
+    local subcommand = args[1]
+    local target = args[2]
+    switch(subcommand) {
+        ["generate"] = function() generate(target) end,
+        ["gen"]      = function() generate(target) end,
+        ["install"]  = function() install(target)  end,
+        ["i"]        = function() install(target)  end,
+        default      = usage,
+    }
+end
+
+main(arg)
